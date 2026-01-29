@@ -6,256 +6,379 @@
     <title>TravelZen | AI Travel Platform</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #f8f9fa; }
+        body { font-family: 'Arial', sans-serif; background: #f5f7fa; }
         
         /* 导航栏 */
         .navbar { 
-            background: #2C5F2D; 
-            padding: 1rem; 
+            background: linear-gradient(135deg, #2C5F2D 0%, #4CAF50 100%); 
+            padding: 1.2rem; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            position: fixed;
-            width: 100%;
+            position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
-        .logo { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
-        .logo span { color: #FFB347; }
+        .logo { 
+            color: white; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo span { color: #FFD700; }
+        .nav-links { display: flex; gap: 2rem; }
         .nav-links a { 
             color: white; 
-            margin-left: 1.5rem; 
             text-decoration: none;
             font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
         }
-        .nav-links a:hover { color: #FFB347; }
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
         
-        /* 英雄区域 - AI视频 */
-        .hero { 
-            height: 80vh; 
-            position: relative; 
-            overflow: hidden; 
-            margin-top: 60px;
+        /* AI英雄区域 - 使用GIF动画 */
+        .ai-hero {
+            min-height: 85vh;
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 4rem 2rem;
+            margin-top: 10px;
         }
-        .video-background {
+        
+        .ai-animation {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
-        }
-        .video-background video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(44, 95, 45, 0.6) 0%, rgba(0, 123, 255, 0.4) 100%);
-            z-index: -1;
-        }
-        .hero-content {
-            color: white;
-            padding: 2rem;
-            max-width: 800px;
             z-index: 1;
+            opacity: 0.3;
+            background: 
+                url('https://media.giphy.com/media/3o7aD2sa8MxLG7Yq7S/giphy.gif') center/cover,
+                url('https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif') center/cover;
+            mix-blend-mode: screen;
+            animation: float 20s infinite linear;
         }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, 10px) rotate(1deg); }
+            50% { transform: translate(0, 20px) rotate(0deg); }
+            75% { transform: translate(-10px, 10px) rotate(-1deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
         }
-        .ai-features {
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 900px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+            to { text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 30px rgba(100,255,255,0.6); }
+        }
+        
+        .ai-tags {
             display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
             justify-content: center;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
+            margin: 2rem 0;
         }
-        .ai-badge {
-            background: rgba(255, 179, 71, 0.9);
+        
+        .ai-tag {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-        .cta-button {
-            background: #FFB347;
-            color: white;
-            padding: 1rem 2.5rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 30px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1.5rem;
             font-weight: bold;
-            font-size: 1.1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        
+        .ai-button {
+            background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+            color: #1a2980;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
             border: none;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
         }
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        
+        .ai-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
         }
         
         /* 内容区域 */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
         }
+        
         .section-title {
             text-align: center;
-            color: #2C5F2D;
+            color: #1a2980;
             margin-bottom: 3rem;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
+            position: relative;
         }
-        .card-grid {
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #FF8C00);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        
+        .ai-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
         }
-        .card {
+        
+        .ai-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            position: relative;
         }
-        .card:hover {
-            transform: translateY(-10px);
+        
+        .ai-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
         }
-        .card img {
+        
+        .ai-card img {
             width: 100%;
-            height: 220px;
+            height: 250px;
             object-fit: cover;
+            transition: transform 0.5s;
         }
-        .card-content {
-            padding: 1.8rem;
+        
+        .ai-card:hover img {
+            transform: scale(1.1);
         }
-        .card h3 {
-            color: #2C5F2D;
-            margin-bottom: 0.8rem;
-            font-size: 1.4rem;
+        
+        .ai-card-content {
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .ai-card h3 {
+            color: #1a2980;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .ai-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        /* AI展示区 */
+        .ai-demo {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 30px;
+            padding: 4rem;
+            margin: 4rem 0;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         /* 页脚 */
         footer {
-            background: #343A40;
+            background: #1a1a2e;
             color: white;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
-            margin-top: 3rem;
         }
+        
         .footer-content {
             max-width: 800px;
             margin: 0 auto;
         }
         
+        .student-info {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
         /* 响应式 */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .nav-links a { margin-left: 1rem; }
-            .container { padding: 2rem 1rem; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links { gap: 1rem; }
+            .ai-cards { grid-template-columns: 1fr; }
+            .ai-button { padding: 1rem 2rem; }
         }
     </style>
 </head>
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
-        <a href="index.html" class="logo">Travel<span>Zen</span></a>
+        <a href="index.html" class="logo">
+            <span style="font-size: 2rem;">🌍</span> Travel<span>Zen</span>
+        </a>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="destinations.html">Destinations</a>
-            <a href="blog.html">Blog</a>
-            <a href="about.html">About</a>
+            <a href="index.html" class="active">🏠 Home</a>
+            <a href="destinations.html">🗺️ Destinations</a>
+            <a href="blog.html">📝 Blog</a>
+            <a href="about.html">🤖 About AI</a>
         </div>
     </nav>
 
-    <!-- AI视频英雄区域 -->
-    <section class="hero">
-        <div class="video-background">
-            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80">
-                <source src="https://cdn.pixabay.com/video/2023/04/25/162190_tiny.mp4" type="video/mp4">
-                <!-- 备用视频源 -->
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-tropical-beach-4470-large.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="video-overlay"></div>
+    <!-- AI英雄区域 -->
+    <section class="ai-hero">
+        <div class="ai-animation"></div>
         
         <div class="hero-content">
-            <h1>🤖 AI-Powered Travel Experiences</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
-                Discover intelligent travel recommendations powered by artificial intelligence
+            <h1>🤖 AI-POWERED TRAVEL REVOLUTION</h1>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Experience the future of travel with artificial intelligence generating personalized recommendations, 
+                immersive content, and smart itineraries in real-time.
             </p>
             
-            <div class="ai-features">
-                <span class="ai-badge">🎬 AI Video Content</span>
-                <span class="ai-badge">🧠 Smart Recommendations</span>
-                <span class="ai-badge">📊 Personalized Itineraries</span>
+            <div class="ai-tags">
+                <span class="ai-tag">🎬 AI Video Generation</span>
+                <span class="ai-tag">🧠 Neural Networks</span>
+                <span class="ai-tag">📊 Predictive Analytics</span>
+                <span class="ai-tag">🖼️ Image Synthesis</span>
             </div>
             
-            <button onclick="playAIExperience()" class="cta-button">
-                🚀 Launch AI Travel Assistant
+            <button onclick="startAIExperience()" class="ai-button">
+                <span style="font-size: 1.5rem;">🚀</span>
+                LAUNCH AI TRAVEL ASSISTANT
             </button>
             
-            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">
-                <i>Powered by AI Technology | Student Project: s68127376002@ssru.ac.th</i>
-            </p>
+            <div style="margin-top: 3rem; padding: 1.5rem; background: rgba(0,0,0,0.3); border-radius: 15px; display: inline-block;">
+                <p style="margin: 0; font-size: 0.9rem;">
+                    <strong>🎓 Student Project:</strong> s68127376002@ssru.ac.th | 
+                    <strong>🔗 Live Demo:</strong> AI Content Generation
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- 特色目的地 -->
+    <!-- AI推荐目的地 -->
     <div class="container">
-        <h2 class="section-title">🌍 AI-Recommended Destinations</h2>
+        <h2 class="section-title">🌍 AI-CURATED DESTINATIONS</h2>
+        <p style="text-align: center; color: #666; font-size: 1.1rem; max-width: 800px; margin: 0 auto 3rem;">
+            These destinations are selected and enhanced using artificial intelligence algorithms 
+            analyzing millions of travel data points.
+        </p>
         
-        <div class="card-grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bali">
-                <div class="card-content">
+        <div class="ai-cards">
+            <div class="ai-card">
+                <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bali AI">
+                <div class="ai-card-content">
+                    <div class="ai-badge">AI RECOMMENDED</div>
                     <h3>Bali, Indonesia</h3>
-                    <p>Tropical paradise with AI-curated cultural experiences and smart itinerary planning.</p>
-                    <div style="margin-top: 1rem;">
-                        <span style="background: #e3f2fd; color: #1976d2; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">
-                            🤖 AI Recommended
+                    <p>AI analysis shows 94% satisfaction rate among digital nomads. Neural networks have optimized cultural immersion itineraries.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <span style="background: #e3f2fd; color: #1976d2; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin-right: 0.5rem;">
+                            🤖 AI Score: 92/100
                         </span>
                     </div>
                 </div>
             </div>
             
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kyoto">
-                <div class="card-content">
+            <div class="ai-card">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kyoto AI">
+                <div class="ai-card-content">
+                    <div class="ai-badge">AI OPTIMIZED</div>
                     <h3>Kyoto, Japan</h3>
-                    <p>AI-generated cultural insights and personalized temple tour recommendations.</p>
-                    <div style="margin-top: 1rem;">
-                        <span style="background: #e3f2fd; color: #1976d2; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">
-                            🧠 AI Optimized
+                    <p>Machine learning models predict cherry blossom viewing times with 98% accuracy. AI-generated cultural guides available.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <span style="background: #e3f2fd; color: #1976d2; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin-right: 0.5rem;">
+                            🧠 AI Prediction: 98%
                         </span>
                     </div>
                 </div>
             </div>
             
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1534008897995-27a23e859048?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Swiss Alps">
-                <div class="card-content">
+            <div class="ai-card">
+                <img src="https://images.unsplash.com/photo-1534008897995-27a23e859048?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Swiss AI">
+                <div class="ai-card-content">
+                    <div class="ai-badge">AI ENHANCED</div>
                     <h3>Swiss Alps</h3>
-                    <p>AI-powered hiking route suggestions and weather-predicted travel windows.</p>
-                    <div style="margin-top: 1rem;">
-                        <span style="background: #e3f2fd; color: #1976d2; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem;">
-                            📊 AI Analyzed
+                    <p>Computer vision algorithms analyze trail conditions daily. AI suggests optimal hiking routes based on weather patterns.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <span style="background: #e3f2fd; color: #1976d2; padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin-right: 0.5rem;">
+                            📊 AI Analysis: Real-time
                         </span>
                     </div>
                 </div>
@@ -263,82 +386,237 @@
         </div>
     </div>
 
-    <!-- AI功能展示 -->
-    <div class="container" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 20px; margin: 3rem auto;">
-        <div style="padding: 3rem; text-align: center;">
-            <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">✨ AI Travel Features</h2>
+    <!-- AI技术展示 -->
+    <div class="ai-demo">
+        <div class="ai-particles"></div>
+        <div style="position: relative; z-index: 2;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">✨ AI TECHNOLOGY IN ACTION</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                This platform demonstrates how artificial intelligence can transform travel planning through:
+            </p>
+            
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                <div>
-                    <h3>🎬 Video Generation</h3>
-                    <p>AI creates immersive travel videos from destination data</p>
+                <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">🎬</h3>
+                    <h4>Content Generation</h4>
+                    <p>AI creates travel videos and images from data patterns</p>
                 </div>
-                <div>
-                    <h3>🧠 Smart Planning</h3>
-                    <p>Intelligent itinerary optimization based on preferences</p>
+                <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">🧠</h3>
+                    <h4>Smart Analysis</h4>
+                    <p>Neural networks process millions of travel data points</p>
                 </div>
-                <div>
-                    <h3>📈 Predictive Analysis</h3>
-                    <p>AI predicts best travel times and cost optimizations</p>
+                <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">📈</h3>
+                    <h4>Predictive Models</h4>
+                    <p>Machine learning forecasts travel trends and costs</p>
                 </div>
             </div>
+            
+            <button onclick="showAIDemo()" style="background: white; color: #f5576c; border: none; padding: 1rem 2.5rem; border-radius: 25px; font-weight: bold; margin-top: 3rem; cursor: pointer; font-size: 1.1rem;">
+                👁️ VIEW AI DEMONSTRATION
+            </button>
         </div>
     </div>
 
     <!-- 页脚 -->
     <footer>
         <div class="footer-content">
-            <h2 style="margin-bottom: 1rem;">TravelZen AI Platform</h2>
-            <p>Advanced AI-powered travel recommendation system</p>
-            <div style="margin: 1.5rem 0;">
-                <p><strong>Student:</strong> s68127376002@ssru.ac.th</p>
-                <p><strong>Project:</strong> SSRU University - Web Development</p>
-                <p><strong>Features:</strong> 4 Pages, AI Video, Responsive Design</p>
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: #FFD700;">TRAVELZEN AI PLATFORM</h2>
+            
+            <div class="student-info">
+                <h3 style="color: #FFD700; margin-bottom: 1rem;">🎓 ACADEMIC PROJECT DETAILS</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; text-align: left;">
+                    <div>
+                        <p><strong>📚 Course:</strong> Web Development & Design</p>
+                        <p><strong>🏫 University:</strong> SSRU University</p>
+                    </div>
+                    <div>
+                        <p><strong>👨‍🎓 Student ID:</strong> s68127376002</p>
+                        <p><strong>📧 Email:</strong> s68127376002@ssru.ac.th</p>
+                    </div>
+                    <div>
+                        <p><strong>🔗 Website:</strong> s68127376002-debug.github.io/travelzen-project</p>
+                        <p><strong>🎯 Project:</strong> 4-Page AI Travel Website</p>
+                    </div>
+                </div>
             </div>
-            <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
-                &copy; 2024 TravelZen AI Travel Platform | All AI features simulated for educational purposes
+            
+            <div style="margin-top: 2rem;">
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">🚀 <strong>AI FEATURES DEMONSTRATED:</strong></p>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                    <span style="background: rgba(255,215,0,0.2); color: #FFD700; padding: 0.5rem 1rem; border-radius: 15px;">🎬 Animated AI Effects</span>
+                    <span style="background: rgba(255,215,0,0.2); color: #FFD700; padding: 0.5rem 1rem; border-radius: 15px;">🧠 Interactive AI Demo</span>
+                    <span style="background: rgba(255,215,0,0.2); color: #FFD700; padding: 0.5rem 1rem; border-radius: 15px;">📊 AI Analytics Display</span>
+                    <span style="background: rgba(255,215,0,0.2); color: #FFD700; padding: 0.5rem 1rem; border-radius: 15px;">🌐 Responsive Design</span>
+                </div>
+            </div>
+            
+            <p style="margin-top: 3rem; font-size: 0.9rem; opacity: 0.7; max-width: 600px; margin-left: auto; margin-right: auto;">
+                This educational project demonstrates the integration of AI concepts in web development. 
+                All AI features are simulated to showcase potential applications in the travel industry.
+            </p>
+            
+            <p style="margin-top: 2rem; font-size: 0.9rem;">
+                &copy; 2024 TravelZen AI Platform | SSRU University Project | Student: s68127376002@ssru.ac.th
             </p>
         </div>
     </footer>
 
     <script>
         // AI体验功能
-        function playAIExperience() {
-            const video = document.querySelector('.video-background video');
-            if (video) {
-                if (video.paused) {
-                    video.play();
-                }
-            }
+        function startAIExperience() {
+            // 创建AI效果
+            createAIParticles();
             
-            // 显示AI效果
-            alert('🚀 Launching AI Travel Assistant...\n\n🤖 AI Features Activated:\n• Smart Destination Matching\n• Video Content Generation\n• Personalized Recommendations\n\nContact: s68127376002@ssru.ac.th');
+            // 显示AI界面
+            const aiModal = `
+                <div style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.9);
+                    z-index: 9999;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    text-align: center;
+                    padding: 2rem;
+                ">
+                    <div style="max-width: 600px;">
+                        <h1 style="font-size: 3rem; margin-bottom: 2rem; color: #FFD700;">🤖 AI TRAVEL ASSISTANT</h1>
+                        
+                        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; margin-bottom: 2rem;">
+                            <div style="display: flex; justify-content: center; gap: 2rem; margin: 2rem 0;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 3rem;">🎬</div>
+                                    <p>Video Generation</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 3rem;">🧠</div>
+                                    <p>Smart Analysis</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 3rem;">📊</div>
+                                    <p>Predictive AI</p>
+                                </div>
+                            </div>
+                            
+                            <p style="font-size: 1.2rem;">
+                                <strong>Student:</strong> s68127376002@ssru.ac.th<br>
+                                <strong>Project:</strong> AI Travel Platform<br>
+                                <strong>University:</strong> SSRU University
+                            </p>
+                        </div>
+                        
+                        <button onclick="closeAIModal()" style="
+                            background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+                            color: #1a2980;
+                            border: none;
+                            padding: 1rem 3rem;
+                            border-radius: 25px;
+                            font-size: 1.2rem;
+                            font-weight: bold;
+                            cursor: pointer;
+                            margin-top: 1rem;
+                        ">
+                            ✅ AI DEMO COMPLETE
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', aiModal);
             
             // 控制台日志
-            console.log('🎯 AI Travel Assistant Activated');
+            console.log('🚀 ============================');
+            console.log('🤖 AI TRAVEL ASSISTANT ACTIVATED');
             console.log('📧 Student: s68127376002@ssru.ac.th');
-            console.log('🌐 Website: https://s68127376002-debug.github.io/travelzen-project/');
-            console.log('🤖 AI Simulation: Video Content + Smart Recommendations');
+            console.log('🎓 University: SSRU');
+            console.log('🔗 Project: TravelZen AI Platform');
+            console.log('🎯 Features: AI Animation + Interactive Demo');
+            console.log('🚀 ============================');
+        }
+        
+        function closeAIModal() {
+            const modal = document.querySelector('[style*="position: fixed; top: 0; left: 0; width: 100%"]');
+            if (modal) modal.remove();
+        }
+        
+        function showAIDemo() {
+            alert('🎬 AI TECHNOLOGY DEMONSTRATION\n\n' +
+                  'This platform showcases:\n' +
+                  '• AI-powered travel recommendations\n' +
+                  '• Animated AI visual effects\n' +
+                  '• Interactive machine learning concepts\n' +
+                  '• Predictive analytics simulation\n\n' +
+                  '👨‍🎓 Student: s68127376002@ssru.ac.th\n' +
+                  '🏫 SSRU University Project\n' +
+                  '🔗 Live at: s68127376002-debug.github.io/travelzen-project');
+        }
+        
+        function createAIParticles() {
+            const particles = document.createElement('div');
+            particles.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9998;
+            `;
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 10px;
+                    height: 10px;
+                    background: #FFD700;
+                    border-radius: 50%;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    animation: floatParticle 2s infinite;
+                `;
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes floatParticle {
+                        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+                        50% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(1.5); opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                particles.appendChild(particle);
+            }
+            
+            document.body.appendChild(particles);
+            setTimeout(() => particles.remove(), 2000);
         }
         
         // 页面加载完成
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('===================================');
-            console.log('🚀 TRAVELZEN AI PLATFORM LOADED');
-            console.log('===================================');
-            console.log('🤖 AI Features: ACTIVE');
-            console.log('📊 Pages: 4 Complete Pages');
-            console.log('🎬 Video: AI-Generated Content');
-            console.log('📧 Contact: s68127376002@ssru.ac.th');
+            console.log('🌐 ===================================');
+            console.log('🚀 TRAVELZEN AI PLATFORM INITIALIZED');
+            console.log('🤖 AI Features: Active & Running');
+            console.log('🎬 Animation: GIF-based AI Effects');
+            console.log('📧 Student: s68127376002@ssru.ac.th');
             console.log('🔗 GitHub: s68127376002-debug');
-            console.log('===================================');
+            console.log('🌐 URL: github.io/travelzen-project');
+            console.log('📚 Course: Web Development - SSRU');
+            console.log('🌐 ===================================');
             
-            // 尝试自动播放视频
-            const video = document.querySelector('.video-background video');
-            if (video) {
-                video.play().catch(e => {
-                    console.log('Video autoplay prevented, will play on interaction');
-                });
-            }
+            // 页面进入动画
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
         });
     </script>
 </body>
