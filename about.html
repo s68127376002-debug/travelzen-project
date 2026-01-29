@@ -3,180 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelZen | AI Travel Experiences</title>
+    <title>TravelZen | About</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .navbar { 
-            background: #2C5F2D;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo { 
-            color: white; 
-            font-size: 1.5rem; 
-            font-weight: bold; 
-            text-decoration: none;
-        }
+        body { font-family: Arial, sans-serif; }
+        .navbar { background: #2C5F2D; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
         .logo span { color: #FFB347; }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { 
-            color: white; 
-            text-decoration: none;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 2rem;
-        }
-        
-        .page-title {
-            text-align: center;
-            color: #2C5F2D;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        /* AI视频容器 - 多种方案确保播放 */
-        .ai-video-section {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 3rem 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .video-title {
-            color: #2C5F2D;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        /* 方案1: YouTube嵌入（最可靠） */
-        .youtube-container {
-            width: 100%;
-            max-width: 800px;
-            margin: 2rem auto;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        
-        .youtube-video {
-            width: 100%;
-            height: 450px;
-            border: none;
-        }
-        
-        /* 方案2: MP4视频（备用） */
-        .mp4-container {
-            width: 100%;
-            max-width: 800px;
-            margin: 2rem auto;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #000;
-        }
-        
-        .mp4-video {
-            width: 100%;
-            height: auto;
-            max-height: 500px;
-        }
-        
-        /* 方案3: GIF备用（确保有内容显示） */
-        .gif-backup {
-            width: 100%;
-            max-width: 800px;
-            margin: 2rem auto;
-            border-radius: 10px;
-            overflow: hidden;
-            display: none; /* 默认隐藏，视频失败时显示 */
-        }
-        
-        .backup-gif {
-            width: 100%;
-            height: auto;
-        }
-        
-        /* AI视频控制 */
-        .video-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .control-btn {
-            background: #2C5F2D;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.3s;
-        }
-        
-        .control-btn:hover {
-            background: #4CAF50;
-        }
-        
-        /* AI信息展示 */
-        .ai-info {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-        }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .info-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-        
-        /* 项目信息 */
-        .project-info {
-            background: #f0f0f0;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 3rem 0;
-            border-left: 5px solid #2C5F2D;
-        }
-        
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-        }
-        
-        @media (max-width: 768px) {
-            .youtube-video { height: 300px; }
-            .container { padding: 1rem; }
-        }
+        .nav-links a { color: white; margin-left: 1rem; text-decoration: none; }
+        .page-header { background: #007BFF; color: white; text-align: center; padding: 4rem 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .about-content { margin: 2rem 0; line-height: 1.6; }
+        .video-container { background: #f5f5f5; padding: 2rem; border-radius: 10px; margin: 2rem 0; text-align: center; }
+        video { width: 100%; max-width: 800px; border-radius: 10px; margin: 1rem 0; }
+        footer { background: #333; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
     </style>
 </head>
 <body>
@@ -186,102 +26,52 @@
             <a href="index.html">Home</a>
             <a href="destinations.html">Destinations</a>
             <a href="blog.html">Blog</a>
-            <a href="about.html">AI Video</a>
+            <a href="about.html" style="font-weight: bold;">About</a>
         </div>
     </nav>
 
+    <header class="page-header">
+        <h1>About TravelZen</h1>
+        <p>AI-Powered Travel Experience</p>
+    </header>
+
     <div class="container">
-        <h1 class="page-title">🤖 AI-Generated Travel Experiences</h1>
-        <p style="text-align: center; color: #666; margin-bottom: 3rem; font-size: 1.1rem;">
-            Experience AI-created travel content with guaranteed playback
-        </p>
-        
-        <!-- AI视频展示区 -->
-        <div class="ai-video-section">
-            <h2 class="video-title">🎬 AI Travel Video Demonstration</h2>
-            <p style="color: #666; margin-bottom: 2rem;">
-                This section demonstrates AI-generated travel content using multiple reliable video sources.
-                If one method doesn't work, others will automatically display.
-            </p>
+        <div class="about-content">
+            <h2>Our Mission</h2>
+            <p>TravelZen uses advanced artificial intelligence to transform how people plan and experience travel. Our platform analyzes millions of data points to create personalized travel recommendations just for you.</p>
             
-            <!-- 方案1: YouTube嵌入（最可靠） -->
-            <div class="youtube-container" id="youtubeMethod">
-                <h3 style="color: #2C5F2D; margin-bottom: 1rem;">📹 YouTube Travel Video</h3>
-                <iframe 
-                    class="youtube-video"
-                    src="https://www.youtube.com/embed/9d8wWcJLnFI?rel=0&modestbranding=1&autoplay=0&controls=1"
-                    title="AI Travel Video"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-                <p style="color: #666; margin-top: 1rem; font-size: 0.9rem;">
-                    This travel video demonstrates scenic destinations and backpacking experiences.
-                </p>
-            </div>
+            <h2>How It Works</h2>
+            <p>1. <strong>AI Analysis:</strong> Our algorithms learn your preferences from your interactions and feedback.</p>
+            <p>2. <strong>Smart Recommendations:</strong> Get destination suggestions that match your unique travel style.</p>
+            <p>3. <strong>Personalized Itineraries:</strong> AI-generated travel plans that optimize for your interests and budget.</p>
             
-            <!-- 方案2: 直接MP4视频（备用） -->
-            <div class="mp4-container" id="mp4Method" style="display: none;">
-                <h3 style="color: #2C5F2D; margin-bottom: 1rem; color: white;">🎥 Direct Video Playback</h3>
-                <video class="mp4-video" controls playsinline>
-                    <source src="https://cdn.pixabay.com/video/2023/04/25/162190_tiny.mp4" type="video/mp4">
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-tropical-beach-4470-large.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <p style="color: #ccc; margin-top: 1rem; font-size: 0.9rem;">
-                    Alternative video source for reliable playback.
-                </p>
-            </div>
-            
-            <!-- 方案3: GIF备用（最后手段） -->
-            <div class="gif-backup" id="gifBackup">
-                <h3 style="color: #2C5F2D; margin-bottom: 1rem;">🖼️ Static Travel Image</h3>
-                <img class="backup-gif" 
-                     src="https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                     alt="Backpacking image">
-                <p style="color: #666; margin-top: 1rem; font-size: 0.9rem;">
-                    High-quality travel image displayed as fallback.
-                </p>
-            </div>
-            
-            <!-- 视频控制按钮 -->
-            <div class="video-controls">
-                <button class="control-btn" onclick="playVideo()">▶️ Play Video</button>
-                <button class="control-btn" onclick="pauseVideo()">⏸️ Pause</button>
-                <button class="control-btn" onclick="switchSource()">🔄 Switch Source</button>
-                <button class="control-btn" onclick="showVideoInfo()">ℹ️ Video Info</button>
-            </div>
+            <h2>AI-Generated Travel Video</h2>
+            <p>Experience the power of AI in travel visualization. This video was generated by our AI system:</p>
         </div>
         
-        <!-- AI技术信息 -->
-        <div class="ai-info">
-            <h2 style="text-align: center; margin-bottom: 1.5rem;">🤖 AI Video Technology</h2>
-            <div class="info-grid">
-                <div class="info-item">
-                    <h3>🎬 Generation</h3>
-                    <p>AI creates travel videos from destination data using neural networks.</p>
-                </div>
-                <div class="info-item">
-                    <h3>🎨 Enhancement</h3>
-                    <p>Machine learning enhances video quality and adds effects.</p>
-                </div>
-                <div class="info-item">
-                    <h3>🚀 Delivery</h3>
-                    <p>Multiple delivery methods ensure reliable playback across devices.</p>
-                </div>
-                <div class="info-item">
-                    <h3>📊 Analytics</h3>
-                    <p>AI analyzes viewer engagement to improve content recommendations.</p>
-                </div>
-            </div>
+        <div class="video-container">
+            <video controls poster="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-traveling-by-train-through-a-pine-forest-43743-large.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p><em>AI-generated travel visualization showcasing potential destinations based on user preferences.</em></p>
         </div>
         
-        <!-- 项目信息 -->
-        <div class="project-info">
-            <h2 style="color: #2C5F2D; margin-bottom: 1rem;">🎓 Student Project Details</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-                <div>
-                    <h3 style="color: #2C5F2D;">👨‍🎓 Student</h3>
-                    <p>ID: s68127376002</p>
-                    <p>Email: s68127376002@ssru.ac.th</p>
-                    
+        <div class="about-content">
+            <h2>Meet the Team</h2>
+            <p>TravelZen was founded by travel enthusiasts and AI experts who believe technology should enhance, not replace, the joy of travel.</p>
+            
+            <h2>Contact Us</h2>
+            <p>Email: s68127376002@ssru.ac.th</p>
+            <p>Location: Bangkok, Thailand</p>
+            <p>We're constantly improving our AI models to provide better travel experiences. Try our AI recommendations today!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>TravelZen - About Us</p>
+        <p>Email: s68127376002@ssru.ac.th</p>
+        <p>&copy; 2024 TravelZen. All rights reserved.</p>
+    </footer>
+</body>
+</html>
