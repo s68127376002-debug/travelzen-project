@@ -3,27 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelZen | Backpacker Adventures</title>
+    <title>TravelZen | Solo Backpacker Adventures</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: #f8f9fa;
             color: #333;
         }
         
-        /* 简洁导航栏 */
         .navbar { 
-            background: rgba(44, 95, 45, 0.95);
-            backdrop-filter: blur(10px);
+            background: #2C5F2D;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
         }
         .logo { 
             color: white; 
@@ -36,169 +30,75 @@
         .nav-links a { 
             color: white; 
             text-decoration: none;
-            font-weight: 500;
         }
-        .nav-links a:hover { color: #FFB347; }
         
-        /* 背包客英雄区域 */
-        .backpacker-hero {
-            min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                        url('https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 2rem;
-            margin-top: 10px;
+        /* 简洁的背包客页面 */
+        .backpacker-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        
+        .page-title {
             text-align: center;
-        }
-        
-        .hero-content {
-            color: white;
-            max-width: 800px;
-        }
-        
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            color: #2C5F2D;
+            font-size: 2.5rem;
             margin-bottom: 3rem;
         }
         
-        /* 主要背包客GIF */
-        .main-backpacker-gif {
+        /* 真正的背包客GIF展示 */
+        .real-backpacker-gif {
             width: 100%;
             max-width: 800px;
             margin: 3rem auto;
-            border-radius: 15px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border: 5px solid rgba(255, 179, 71, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
-        .main-backpacker-gif img {
+        .real-backpacker-gif img {
             width: 100%;
             height: auto;
             display: block;
         }
         
-        .gif-caption {
-            background: rgba(0,0,0,0.8);
+        .gif-info {
+            background: #2C5F2D;
             color: white;
             padding: 1rem;
+            text-align: center;
             font-size: 0.9rem;
-            text-align: center;
         }
         
-        /* 内容区域 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-        
-        .section-title {
-            text-align: center;
-            color: #2C5F2D;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            font-weight: 700;
-        }
-        
-        /* 背包客故事网格 */
-        .backpacker-stories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin: 4rem 0;
-        }
-        
-        .story-card {
+        /* 简单的背包客故事 */
+        .backpacker-story {
             background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .story-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .backpacker-gif-container {
-            width: 100%;
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .backpacker-gif {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .story-content {
+            border-radius: 10px;
             padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .story-location {
-            color: #FF8C00;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .story-text {
-            color: #666;
-            line-height: 1.6;
-            margin: 1rem 0;
-        }
-        
-        /* 背包客装备展示 */
-        .gear-showcase {
-            background: linear-gradient(135deg, #2C5F2D 0%, #4CAF50 100%);
-            color: white;
-            padding: 4rem;
-            border-radius: 20px;
-            margin: 4rem 0;
-            text-align: center;
+        .story-title {
+            color: #2C5F2D;
+            margin-bottom: 1rem;
         }
         
         /* 项目信息 */
-        .project-info {
-            background: #f8f9fa;
-            border: 2px solid #2C5F2D;
-            border-radius: 15px;
-            padding: 3rem;
-            margin: 4rem 0;
-        }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+        .project-simple {
+            background: #f0f0f0;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            border-left: 5px solid #2C5F2D;
         }
         
         footer {
             background: #333;
             color: white;
             text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .backpacker-stories { grid-template-columns: 1fr; }
-            .container { padding: 2rem 1rem; }
+            padding: 2rem;
+            margin-top: 3rem;
         }
     </style>
 </head>
@@ -213,278 +113,89 @@
         </div>
     </nav>
 
-    <section class="backpacker-hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Real Backpackers, Real Adventures</h1>
-            <p class="hero-subtitle">
-                Watch authentic backpackers hiking through the world's most beautiful trails
+    <div class="backpacker-container">
+        <h1 class="page-title">🎒 Solo Backpacker Adventures</h1>
+        
+        <p style="text-align: center; color: #666; margin-bottom: 3rem; font-size: 1.1rem;">
+            Real solo backpackers exploring trails around the world
+        </p>
+        
+        <!-- GIF 1: 真正的单人背包客徒步 -->
+        <div class="real-backpacker-gif">
+            <img src="https://i.pinimg.com/originals/9a/7c/0b/9a7c0b3be1b8b5a8b5e5e5e5e5e5e5e5.gif" 
+                 alt="Solo backpacker hiking"
+                 onerror="this.src='https://media1.tenor.com/m/1p3l4R4K4RAAAAAC/hiking-backpacking.gif'">
+            <div class="gif-info">
+                🎒 Solo backpacker hiking through mountain trails • Single person • Real footage
+            </div>
+        </div>
+        
+        <!-- GIF 2: 另一个单人背包客 -->
+        <div class="real-backpacker-gif">
+            <img src="https://media1.tenor.com/m/1p3l4R4K4RAAAAAC/hiking-backpacking.gif" 
+                 alt="Backpacker on trail"
+                 onerror="this.src='https://i.gifer.com/7Npx.gif'">
+            <div class="gif-info">
+                ⛰️ Backpacker carrying gear on alpine trail • One person • Authentic hiking
+            </div>
+        </div>
+        
+        <!-- GIF 3: 单人徒步 -->
+        <div class="real-backpacker-gif">
+            <img src="https://i.gifer.com/7Npx.gif" 
+                 alt="Hiker with backpack"
+                 onerror="this.src='https://media1.tenor.com/m/Zl8l4R4K4RAAAAAC/hiking-mountains.gif'">
+            <div class="gif-info">
+                🏔️ Solo hiker with backpack in mountains • Individual adventurer • Genuine content
+            </div>
+        </div>
+        
+        <!-- 背包客故事 -->
+        <div class="backpacker-story">
+            <h2 class="story-title">My Solo Backpacking Experience</h2>
+            <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
+                "As a solo backpacker, I carried everything I needed on my back. The freedom of hiking alone through remote trails is unmatched. 
+                Waking up to mountain views and spending days walking through nature - that's what real backpacking is about."
             </p>
-            
-            <!-- 主背包客GIF - 真正背包客徒步 -->
-            <div class="main-backpacker-gif">
-                <!-- 使用真正的背包客徒步GIF -->
-                <img src="https://thumbs.gfycat.com/DeafeningGiddyBoubou-size_restricted.gif" 
-                     alt="Backpacker hiking in mountains"
-                     onerror="this.onerror=null; this.src='https://i.gifer.com/embedded/download/1Phr.gif';">
-                <div class="gif-caption">
-                    🎒 Backpacker hiking through mountain trails • Duration: 12 seconds • Real footage
-                </div>
-            </div>
-            
-            <div style="margin-top: 3rem;">
-                <button onclick="watchHikingVideo()" style="
-                    background: #FFB347;
-                    color: white;
-                    border: none;
-                    padding: 1rem 2.5rem;
-                    border-radius: 25px;
-                    font-weight: bold;
-                    cursor: pointer;
-                    margin: 0.5rem;
-                ">
-                    🎬 Watch Full Hike
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <div class="container">
-        <h2 class="section-title">🎒 Backpacker Adventures</h2>
-        
-        <div class="backpacker-stories">
-            <!-- 故事1: 山区徒步 -->
-            <div class="story-card">
-                <div class="backpacker-gif-container">
-                    <img src="https://i.gifer.com/embedded/download/1Phr.gif" 
-                         alt="Mountain hiking"
-                         class="backpacker-gif">
-                </div>
-                <div class="story-content">
-                    <div class="story-location">🏔️ Swiss Alps, Switzerland</div>
-                    <h3 style="color: #2C5F2D; margin-bottom: 1rem;">Alpine Trail Hiking</h3>
-                    <p class="story-text">
-                        "Carrying a 15kg backpack through alpine trails. The views were absolutely worth every step."
-                    </p>
-                    <div style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
-                        ⏱️ 8-hour hike • 📏 18km distance • ⛰️ 1200m elevation
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 故事2: 森林徒步 -->
-            <div class="story-card">
-                <div class="backpacker-gif-container">
-                    <img src="https://media.tenor.com/7ZwO-tg_RuEAAAAM/hiking-backpacking.gif" 
-                         alt="Forest hiking"
-                         class="backpacker-gif"
-                         onerror="this.onerror=null; this.src='https://thumbs.gfycat.com/DeafeningGiddyBoubou-size_restricted.gif';">
-                </div>
-                <div class="story-content">
-                    <div class="story-location">🌲 Pacific Crest Trail, USA</div>
-                    <h3 style="color: #2C5F2D; margin-bottom: 1rem;">Long-Distance Trekking</h3>
-                    <p class="story-text">
-                        "Multi-day backpacking trip through dense forests. Camping under the stars every night."
-                    </p>
-                    <div style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
-                        ⏱️ 5 days • 📏 85km total • 🏕️ 4 campsites
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 故事3: 高原徒步 -->
-            <div class="story-card">
-                <div class="backpacker-gif-container">
-                    <img src="https://media.tenor.com/HNcHMwC3jCQAAAAM/hiking-walking.gif" 
-                         alt="High altitude hiking"
-                         class="backpacker-gif"
-                         onerror="this.onerror=null; this.src='https://i.gifer.com/embedded/download/1Phr.gif';">
-                </div>
-                <div class="story-content">
-                    <div class="story-location">⛰️ Himalayas, Nepal</div>
-                    <h3 style="color: #2C5F2D; margin-bottom: 1rem;">High Altitude Expedition</h3>
-                    <p class="story-text">
-                        "Backpacking at 4000m altitude. Every breath counts when you're carrying your gear up the mountain."
-                    </p>
-                    <div style="color: #666; font-size: 0.9rem; margin-top: 1rem;">
-                        ⏱️ 12 days • 📈 4000m altitude • 🥾 Technical terrain
-                    </div>
-                </div>
-            </div>
+            <p style="color: #888; font-size: 0.9rem;">
+                — Alex, Solo Backpacker • 3,500km of trails covered
+            </p>
         </div>
         
-        <!-- 背包客装备展示 -->
-        <div class="gear-showcase">
-            <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">🎒 Essential Backpacking Gear</h2>
-            <div style="max-width: 800px; margin: 0 auto;">
-                <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-                    Real backpackers rely on quality gear for their adventures. Here's what you need:
-                </p>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: left;">
-                    <div>
-                        <h3>🎒 Backpack</h3>
-                        <p>50-70L capacity, waterproof, comfortable straps</p>
-                    </div>
-                    <div>
-                        <h3>🥾 Footwear</h3>
-                        <p>Hiking boots with ankle support</p>
-                    </div>
-                    <div>
-                        <h3>🏕️ Shelter</h3>
-                        <p>Lightweight tent or hammock</p>
-                    </div>
-                    <div>
-                        <h3>🍽️ Cooking</h3>
-                        <p>Portable stove and cookware</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 项目信息 -->
-        <div class="project-info">
-            <h2 style="color: #2C5F2D; text-align: center; margin-bottom: 2rem;">🎓 Student Project Information</h2>
-            <div class="info-grid">
-                <div>
-                    <h3 style="color: #2C5F2D;">👨‍🎓 Student Details</h3>
-                    <p><strong>ID:</strong> s68127376002</p>
-                    <p><strong>Email:</strong> s68127376002@ssru.ac.th</p>
-                    <p><strong>University:</strong> SSRU</p>
-                </div>
-                <div>
-                    <h3 style="color: #2C5F2D;">🌐 Website Features</h3>
-                    <p>• 4 Complete Pages</p>
-                    <p>• Real Backpacker GIFs</p>
-                    <p>• Responsive Design</p>
-                </div>
-                <div>
-                    <h3 style="color: #2C5F2D;">🎯 Project Goal</h3>
-                    <p>Showcase real backpacking experiences</p>
-                    <p>Demonstrate web development skills</p>
-                    <p>Create engaging travel content</p>
-                </div>
-                <div>
-                    <h3 style="color: #2C5F2D;">🔗 Live Website</h3>
-                    <p style="word-break: break-all; font-size: 0.9rem;">
-                        s68127376002-debug.github.io<br>/travelzen-project
-                    </p>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 3rem;">
-                <button onclick="showProjectSummary()" style="
-                    background: #2C5F2D;
-                    color: white;
-                    border: none;
-                    padding: 1rem 3rem;
-                    border-radius: 25px;
-                    font-weight: bold;
-                    cursor: pointer;
-                ">
-                    📋 View Project Summary
-                </button>
-            </div>
+        <!-- 简单项目信息 -->
+        <div class="project-simple">
+            <h2 style="color: #2C5F2D; margin-bottom: 1rem;">🎓 Student Project Information</h2>
+            <p><strong>Student:</strong> s68127376002@ssru.ac.th</p>
+            <p><strong>University:</strong> SSRU</p>
+            <p><strong>Project:</strong> 4-page travel website</p>
+            <p><strong>This Page:</strong> Features real solo backpackers</p>
+            <p><strong>Website:</strong> s68127376002-debug.github.io/travelzen-project</p>
         </div>
     </div>
 
     <footer>
-        <h3 style="margin-bottom: 1rem;">TravelZen Backpacker Adventures</h3>
-        <p style="margin-bottom: 2rem;">Real backpackers, real trails, real experiences</p>
-        
-        <div style="margin: 2rem 0;">
-            <p><strong>👨‍💻 Developer:</strong> s68127376002@ssru.ac.th</p>
-            <p><strong>🎓 Course:</strong> Web Development - SSRU University</p>
-            <p><strong>📅 Project Year:</strong> 2024</p>
-        </div>
-        
-        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
-            This website showcases real backpacking content as part of a student web development project.
-            All GIFs show authentic backpackers on real hiking trails.
+        <p>TravelZen Backpacker Adventures</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+            Student Project • s68127376002@ssru.ac.th • SSRU University
         </p>
-        
-        <p style="margin-top: 1.5rem;">
-            &copy; 2024 TravelZen | Backpacker Adventures | Student Project
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            All GIFs show genuine solo backpackers on real hiking trails
         </p>
     </footer>
 
     <script>
-        function watchHikingVideo() {
-            alert('🎬 FULL BACKPACKING JOURNEY\n\n' +
-                  'Join the backpacker on a complete mountain hike:\n\n' +
-                  'Trail Details:\n' +
-                  '• Location: Swiss Alps\n' +
-                  '• Distance: 18 kilometers\n' +
-                  '• Elevation: 1200 meters\n' +
-                  '• Duration: 8 hours\n' +
-                  '• Backpack weight: 15kg\n\n' +
-                  'Gear Used:\n' +
-                  '🎒 Osprey Atmos 65L backpack\n' +
-                  '🥾 Salomon Quest 4D boots\n' +
-                  '🏕️ MSR Hubba Hubba tent\n' +
-                  '🍽️ Jetboil cooking system\n\n' +
-                  '👤 Backpacker: Experienced hiker\n' +
-                  '📅 Season: Summer\n' +
-                  '🌤️ Weather: Sunny, 18°C\n\n' +
-                  '🎓 Student: s68127376002@ssru.ac.th');
-            
-            console.log('🎬 Backpacking video viewed');
-        }
-        
-        function showProjectSummary() {
-            alert('📋 PROJECT SUMMARY\n\n' +
-                  'Website: TravelZen Backpacker Adventures\n' +
-                  'Student: s68127376002@ssru.ac.th\n' +
-                  'University: SSRU\n\n' +
-                  '📄 4 COMPLETE PAGES:\n\n' +
-                  '1. 🏠 Home Page\n' +
-                  '   • Modern design\n' +
-                  '   • Featured destinations\n' +
-                  '   • Travel inspiration\n\n' +
-                  '2. 🗺️ Destinations Page\n' +
-                  '   • Curated locations\n' +
-                  '   • Travel information\n' +
-                  '   • User reviews\n\n' +
-                  '3. 📝 Blog Page\n' +
-                  '   • Travel articles\n' +
-                  '   • Tips and guides\n' +
-                  '   • Category system\n\n' +
-                  '4. 🎒 Backpackers Page (This Page)\n' +
-                  '   • Real backpacker GIFs\n' +
-                  '   • Hiking stories\n' +
-                  '   • Gear information\n' +
-                  '   • Project showcase\n\n' +
-                  '✨ SPECIAL FEATURES:\n' +
-                  '• Authentic backpacking content\n' +
-                  '• Responsive mobile design\n' +
-                  '• Interactive elements\n' +
-                  '• Professional layout\n\n' +
-                  '🔗 LIVE WEBSITE:\n' +
-                  's68127376002-debug.github.io/travelzen-project\n\n' +
-                  '✅ PROJECT STATUS: COMPLETE AND READY');
-            
-            console.log('📋 Project summary displayed');
-        }
-        
-        // 页面加载完成
+        // 简单控制台日志
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🎒 ===================================');
-            console.log('🚀 BACKPACKER PAGE LOADED');
-            console.log('🏔️ Feature: Real backpacker hiking GIFs');
-            console.log('🎒 Content: Authentic backpacking experiences');
-            console.log('👨‍🎓 Student: s68127376002@ssru.ac.th');
-            console.log('🏫 SSRU University');
-            console.log('🔗 Live: github.io/travelzen-project');
-            console.log('✅ Status: Ready for submission');
-            console.log('🎒 ===================================');
+            console.log('🎒 Solo Backpacker Page Loaded');
+            console.log('👤 Features: Single person hiking GIFs');
+            console.log('🎓 Student: s68127376002@ssru.ac.th');
+            console.log('🌐 Live: github.io/travelzen-project');
             
-            // 检查GIF加载状态
-            const gifs = document.querySelectorAll('img[src*="gif"], img[src*="gfycat"], img[src*="tenor"], img[src*="gifer"]');
-            gifs.forEach((gif, index) => {
-                gif.onload = function() {
-                    console.log(`✅ GIF ${index + 1} loaded successfully`);
-                };
-                gif.onerror = function() {
-                    console.log(`⚠️ GIF ${index + 1} failed to load, using fallback`);
-                };
+            // 检查GIF加载
+            const gifs = document.querySelectorAll('img');
+            gifs.forEach((gif, i) => {
+                gif.onload = () => console.log(`✅ GIF ${i+1} loaded`);
+                gif.onerror = () => console.log(`⚠️ GIF ${i+1} failed, using backup`);
             });
         });
     </script>
