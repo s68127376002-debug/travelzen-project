@@ -39,90 +39,107 @@
             background: #007BFF; 
             color: white; 
             text-align: center; 
-            padding: 4rem 1rem; 
+            padding: 3rem 1rem; 
         }
         .container { 
-            max-width: 1000px; 
+            max-width: 900px; 
             margin: 0 auto; 
             padding: 2rem; 
         }
         .video-section {
             background: white;
-            padding: 3rem;
+            padding: 2rem;
             border-radius: 15px;
             margin: 2rem 0;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        video {
+        .ai-visualization {
             width: 100%;
             max-width: 800px;
-            border-radius: 10px;
+            height: 400px;
             margin: 2rem auto;
-            display: block;
-            background: #000;
-            border: 5px solid white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+        .ai-animation {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .ai-element {
+            position: absolute;
+            animation: float 3s infinite ease-in-out;
+        }
+        .ai-element:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            width: 60px;
+            height: 60px;
+            background: #FFB347;
+            border-radius: 50%;
+            animation-delay: 0s;
+        }
+        .ai-element:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            width: 80px;
+            height: 40px;
+            background: #2C5F2D;
+            border-radius: 20px;
+            animation-delay: 0.5s;
+        }
+        .ai-element:nth-child(3) {
+            top: 70%;
+            left: 30%;
+            width: 40px;
+            height: 80px;
+            background: #007BFF;
+            border-radius: 40px;
+            animation-delay: 1s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
         .ai-badge {
-            background: linear-gradient(135deg, #FFB347, #FF8C00);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
+            background: #FFB347;
+            color: #2C5F2D;
+            padding: 10px 25px;
+            border-radius: 20px;
             display: inline-block;
             margin: 1rem 0;
             font-weight: bold;
             font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(255,140,0,0.3);
         }
-        .video-controls {
+        .controls {
             display: flex;
             justify-content: center;
             gap: 1rem;
             margin: 1.5rem 0;
-            flex-wrap: wrap;
         }
-        .control-btn {
+        .btn {
             background: #2C5F2D;
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
-        .control-btn:hover {
-            background: #1e4020;
-            transform: translateY(-2px);
-        }
-        .control-btn.play {
-            background: linear-gradient(135deg, #007BFF, #0056b3);
-        }
-        .video-info {
+        .description {
             background: #f8f9fa;
             padding: 1.5rem;
             border-radius: 10px;
             margin: 2rem 0;
             text-align: left;
-            border-left: 4px solid #2C5F2D;
-        }
-        .fallback-message {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            color: #856404;
         }
         footer { 
             background: #333; 
             color: white; 
             text-align: center; 
-            padding: 3rem 1rem; 
+            padding: 2rem; 
             margin-top: 3rem;
         }
     </style>
@@ -139,136 +156,114 @@
     </nav>
 
     <header class="page-header">
-        <h1>AI Generated Travel Video</h1>
-        <p>Watch our artificial intelligence create travel visualizations</p>
+        <h1>AI Generated Content</h1>
+        <p>Real-time AI visualization of travel experiences</p>
     </header>
 
     <div class="container">
         <div class="video-section">
-            <h2 style="color: #2C5F2D;">AI Travel Experience</h2>
-            <div class="ai-badge">🤖 100% AI GENERATED</div>
+            <h2>AI Travel Visualization</h2>
+            <div class="ai-badge">🤖 LIVE AI ANIMATION</div>
             
-            <p>This video is generated by artificial intelligence to showcase travel destinations:</p>
+            <p>This animation represents how AI generates travel content:</p>
             
-            <!-- 使用一个简单可靠的视频源 -->
-            <video id="aiVideo" controls preload="metadata">
-                <!-- 主要视频源 - 使用一个简短的、可靠的视频 -->
-                <source src="https://cdn.pixabay.com/video/2023/04/21/162483_829984694_tiny.mp4" type="video/mp4">
-                <!-- 备用视频源 -->
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-tropical-beach-4470-large.mp4" type="video/mp4">
-                <!-- 如果视频无法播放，显示这个信息 -->
-                <p style="color: #666; padding: 2rem;">
-                    Your browser doesn't support HTML5 video or the video failed to load.
-                    <br>
-                    This should have been an AI-generated travel video.
-                </p>
-            </video>
-            
-            <div class="video-controls">
-                <button class="control-btn play" onclick="playVideo()">
-                    <span>▶</span> Play AI Video
-                </button>
-                <button class="control-btn" onclick="pauseVideo()">
-                    <span>⏸</span> Pause
-                </button>
-                <button class="control-btn" onclick="muteVideo()">
-                    <span>🔇</span> Mute/Unmute
-                </button>
-                <button class="control-btn" onclick="restartVideo()">
-                    <span>🔄</span> Restart
-                </button>
+            <div class="ai-visualization">
+                <div class="ai-animation">
+                    <div class="ai-element"></div>
+                    <div class="ai-element"></div>
+                    <div class="ai-element"></div>
+                </div>
             </div>
             
-            <div class="video-info">
-                <h3>Video Information:</h3>
-                <p><strong>Format:</strong> MP4 Video</p>
-                <p><strong>Content:</strong> AI-generated travel visualization</p>
-                <p><strong>Purpose:</strong> Demonstrate AI capabilities in travel content creation</p>
-                <p><strong>Note:</strong> This is a sample video showing how AI can visualize travel destinations</p>
+            <div class="controls">
+                <button class="btn" onclick="toggleAnimation()">⏸ Pause</button>
+                <button class="btn" onclick="changeColors()">🎨 Change Colors</button>
+                <button class="btn" onclick="addElement()">➕ Add Element</button>
             </div>
             
-            <!-- 如果视频无法播放的备选方案 -->
-            <div class="fallback-message" id="fallbackMessage" style="display: none;">
-                <h4>⚠️ Video Playback Issue Detected</h4>
-                <p>If the video above is not playing, it's likely due to network restrictions or browser settings.</p>
-                <p>Alternative solution:</p>
-                <ol>
-                    <li>Download a short travel video (10-20 seconds)</li>
-                    <li>Upload it to your GitHub repository</li>
-                    <li>Change the video source to: <code>src="your-video.mp4"</code></li>
-                </ol>
+            <div class="description">
+                <h3>How This AI Visualization Works:</h3>
+                <p>1. <strong>Data Processing:</strong> AI analyzes travel patterns and preferences</p>
+                <p>2. <strong>Content Generation:</strong> Creates visual representations of destinations</p>
+                <p>3. <strong>Personalization:</strong> Adapts content based on user interactions</p>
+                <p>4. <strong>Real-time Updates:</strong> Continuously improves and refines output</p>
             </div>
         </div>
         
-        <div style="background: white; padding: 2rem; border-radius: 10px; margin: 2rem 0;">
-            <h3>How AI Creates This Content:</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
-                    <h4 style="color: #2C5F2D;">1. Data Collection</h4>
-                    <p>AI analyzes thousands of travel images and videos</p>
-                </div>
-                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
-                    <h4 style="color: #2C5F2D;">2. Pattern Recognition</h4>
-                    <p>Identifies common travel patterns and preferences</p>
-                </div>
-                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
-                    <h4 style="color: #2C5F2D;">3. Content Generation</h4>
-                    <p>Creates new visual content based on learned patterns</p>
-                </div>
-                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
-                    <h4 style="color: #2C5F2D;">4. Personalization</h4>
-                    <p>Tailors content to individual user preferences</p>
-                </div>
-            </div>
-        </div>
-        
-        <div style="text-align: center; padding: 2rem; background: #2C5F2D; color: white; border-radius: 10px;">
+        <div style="text-align: center; padding: 2rem; background: white; border-radius: 10px; margin: 2rem 0;">
             <h3>Project Information</h3>
-            <p>Email: s68127376002@ssru.ac.th</p>
-            <p>Course: Effective Website Promotions</p>
-            <p>Project: TravelZen AI Travel Platform</p>
+            <p><strong>Email:</strong> s68127376002@ssru.ac.th</p>
+            <p><strong>Course:</strong> Effective Website Promotions</p>
+            <p><strong>Project:</strong> TravelZen AI Travel Platform</p>
+            <p><strong>Technology:</strong> HTML5 + CSS3 + JavaScript AI Simulation</p>
         </div>
     </div>
 
     <footer>
         <p>TravelZen - AI Powered Travel</p>
         <p>Email: s68127376002@ssru.ac.th</p>
-        <p>&copy; 2024 | This page features AI-generated video content</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem; color: #aaa;">
-            Video source: Pixabay & MixKit (free stock videos)
-        </p>
+        <p>&copy; 2024 | This page features AI-generated visual content</p>
     </footer>
 
     <script>
-        // 视频控制功能
-        const video = document.getElementById('aiVideo');
-        const fallbackMessage = document.getElementById('fallbackMessage');
+        let isAnimating = true;
+        const animation = document.querySelector('.ai-animation');
         
-        function playVideo() {
-            if (video) {
-                video.play().catch(error => {
-                    console.log('Video playback error:', error);
-                    showFallbackMessage();
+        function toggleAnimation() {
+            const elements = document.querySelectorAll('.ai-element');
+            if (isAnimating) {
+                elements.forEach(el => {
+                    el.style.animationPlayState = 'paused';
                 });
+                document.querySelector('.controls .btn').textContent = '▶ Play';
+            } else {
+                elements.forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
+                document.querySelector('.controls .btn').textContent = '⏸ Pause';
             }
+            isAnimating = !isAnimating;
         }
         
-        function pauseVideo() {
-            if (video) video.pause();
+        function changeColors() {
+            const colors = ['#FFB347', '#2C5F2D', '#007BFF', '#764ba2', '#667eea', '#dc3545'];
+            const elements = document.querySelectorAll('.ai-element');
+            elements.forEach(el => {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                el.style.background = randomColor;
+            });
         }
         
-        function muteVideo() {
-            if (video) {
-                video.muted = !video.muted;
-            }
+        function addElement() {
+            const newElement = document.createElement('div');
+            newElement.className = 'ai-element';
+            
+            // Random position and size
+            const size = Math.random() * 60 + 30;
+            newElement.style.width = size + 'px';
+            newElement.style.height = size + 'px';
+            newElement.style.left = Math.random() * 80 + 10 + '%';
+            newElement.style.top = Math.random() * 80 + 10 + '%';
+            
+            // Random color
+            const colors = ['#FFB347', '#2C5F2D', '#007BFF', '#764ba2'];
+            newElement.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Random animation delay
+            newElement.style.animationDelay = Math.random() * 2 + 's';
+            
+            animation.appendChild(newElement);
         }
         
-        function restartVideo() {
-            if (video) {
-                video.currentTime = 0;
-                video.play().catch(showFallbackMessage);
-            }
+        // Add initial elements
+        for (let i = 0; i < 5; i++) {
+            setTimeout(addElement, i * 200);
         }
         
-        function showFallbackMessage() {
-            if (
+        // Show page loaded successfully
+        console.log('TravelZen AI Video Page Loaded');
+        console.log('Email: s68127376002@ssru.ac.th');
+        console.log('Project: Effective Website Promotions');
+    </script>
+</body>
+</html>
