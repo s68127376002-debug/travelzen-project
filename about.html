@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelZen AI | Smart Travel Experiences</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>TravelZen | AI Travel Experience</title>
     <style>
         /* 基础样式 */
         * {
@@ -14,389 +13,306 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            background: #f5f5f5;
         }
 
         /* 导航栏 */
         .navbar {
-            background: linear-gradient(135deg, #1a3a1f 0%, #2C5F2D 100%);
-            padding: 15px 0;
+            background: #2C5F2D;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .logo {
             color: white;
-            font-size: 28px;
-            font-weight: 800;
+            font-size: 1.8rem;
+            font-weight: bold;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .logo span {
             color: #FFB347;
         }
 
-        .logo i {
-            font-size: 24px;
-        }
-
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 1.5rem;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
+            padding: 0.5rem 1rem;
             border-radius: 5px;
-            transition: all 0.3s ease;
+            transition: background 0.3s;
         }
 
         .nav-links a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
+            background: rgba(255,255,255,0.2);
         }
 
         .nav-links a.active {
-            background-color: #FFB347;
-            color: #1a3a1f;
+            background: #FFB347;
+            color: #2C5F2D;
         }
 
-        /* 英雄区域 */
-        .hero {
+        /* 主内容 */
+        .main-content {
             margin-top: 80px;
-            background: linear-gradient(rgba(26, 58, 31, 0.9), rgba(44, 95, 45, 0.8)), 
-                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 0;
+            padding: 2rem;
+        }
+
+        /* 页面标题 */
+        .page-title {
             text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            border-radius: 10px;
         }
 
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            animation: fadeInDown 1s ease;
+        .page-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        .hero p {
-            font-size: 20px;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            animation: fadeInUp 1s ease 0.3s both;
-        }
-
-        /* AI视频展示区 */
+        /* AI视频区域 */
         .ai-video-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 2rem;
         }
 
         .section-header h2 {
-            font-size: 36px;
-            color: #1a3a1f;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-header h2:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: #FFB347;
-            border-radius: 2px;
-        }
-
-        .section-header p {
-            color: #666;
-            font-size: 18px;
-            max-width: 600px;
-            margin: 20px auto 0;
+            color: #2C5F2D;
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
         .video-container {
             position: relative;
             width: 100%;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            border-radius: 20px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            transform: translateY(0);
-            transition: transform 0.3s ease;
+            background: #000;
         }
 
-        .video-container:hover {
-            transform: translateY(-10px);
-        }
-
-        .video-container video {
+        video {
             width: 100%;
             height: auto;
             display: block;
-            border: 10px solid white;
-            border-radius: 15px;
         }
 
         .ai-badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #FFB347, #FF8C00);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            z-index: 2;
-            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+            top: 15px;
+            right: 15px;
+            background: #FFB347;
+            color: #2C5F2D;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
         }
 
-        /* 功能特点 */
-        .features {
-            padding: 80px 0;
+        /* 内容部分 */
+        .content-section {
             background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+        .content-section h3 {
+            color: #2C5F2D;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #FFB347;
+            padding-bottom: 0.5rem;
         }
 
-        .feature-card {
-            background: #f8f9fa;
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: #FFB347;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #2C5F2D, #1a3a1f);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: white;
-            font-size: 30px;
-        }
-
-        .feature-card h3 {
-            color: #1a3a1f;
-            margin-bottom: 15px;
-            font-size: 22px;
-        }
-
-        .feature-card p {
-            color: #666;
-            font-size: 16px;
-        }
-
-        /* CTA区域 */
-        .cta-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #1a3a1f 0%, #2C5F2D 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        .cta-section p {
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #FFB347, #FF8C00);
-            color: white;
-            padding: 18px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 140, 0, 0.4);
-        }
-
-        .cta-button i {
-            margin-left: 10px;
+        .content-section p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
         /* 页脚 */
-        .footer {
-            background: #1a1a1a;
+        footer {
+            background: #333;
             color: white;
-            padding: 60px 0 30px;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .footer-col h3 {
-            color: #FFB347;
-            margin-bottom: 25px;
-            font-size: 20px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 15px;
-        }
-
-        .footer-col ul li a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-col ul li a:hover {
-            color: #FFB347;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: #333;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: #FFB347;
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-            color: #999;
-            font-size: 14px;
-        }
-
-        /* 动画 */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* 响应式设计 */
+        /* 响应式 */
         @media (max-width: 768px) {
             .nav-links {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #2C5F2D;
                 display: none;
+                padding: 1rem;
             }
             
-            .hero h1 {
-                font-size: 36px;
+            .nav-links.show {
+                display: flex;
             }
             
-            .hero p {
-                font-size: 18px;
-                padding: 0 20px;
+            .nav-links a {
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
             }
             
-            .section-header h2 {
-                font-size: 28px;
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
             }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Travel<span>Zen</span></a>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html" class="active">About</a>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <div class="main-content">
+        <!-- 页面标题 -->
+        <div class="page-title">
+            <h1>AI-Powered Travel Experience</h1>
+            <p>Discover the future of travel with artificial intelligence</p>
+        </div>
+
+        <!-- AI视频区域 -->
+        <div class="ai-video-section">
+            <div class="section-header">
+                <h2>AI Generated Travel Video</h2>
+                <p>Watch how our AI creates personalized travel experiences</p>
+            </div>
             
-            .feature-grid {
-                gr
+            <div class="video-container">
+                <div class="ai-badge">AI GENERATED</div>
+                <!-- AI生成的视频 -->
+                <video controls poster="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-tropical-beach-4470-large.mp4" type="video/mp4">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-waves-crashing-on-the-beach-5016-large.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div class="content-section">
+                <h3>How This Video Was Created</h3>
+                <p>This travel video was completely generated by artificial intelligence. Our AI system analyzed thousands of travel images, user preferences, and destination data to create this personalized visualization.</p>
+                <p>The AI uses:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li>Machine learning algorithms to understand travel patterns</li>
+                    <li>Computer vision to analyze destination images</li>
+                    <li>Natural language processing to interpret user requests</li>
+                    <li>Generative AI to create new visual content</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- AI技术介绍 -->
+        <div class="content-section">
+            <h3>Our AI Technology</h3>
+            <p>TravelZen uses cutting-edge artificial intelligence to transform your travel experience:</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; border-left: 4px solid #2C5F2D;">
+                    <h4 style="color: #2C5F2D;">Smart Recommendations</h4>
+                    <p>AI suggests destinations based on your preferences and behavior patterns.</p>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; border-left: 4px solid #FFB347;">
+                    <h4 style="color: #2C5F2D;">Personalized Itineraries</h4>
+                    <p>Generate custom travel plans that match your interests and budget.</p>
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; border-left: 4px solid #007BFF;">
+                    <h4 style="color: #2C5F2D;">AI Visualizations</h4>
+                    <p>See your potential destinations through AI-generated images and videos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 联系我们 -->
+        <div class="content-section">
+            <h3>Contact Us</h3>
+            <p>Email: s68127376002@ssru.ac.th</p>
+            <p>Location: Bangkok, Thailand</p>
+            <p>We're constantly improving our AI to provide better travel experiences!</p>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <p>TravelZen - AI Powered Travel Platform</p>
+            <p>Email: s68127376002@ssru.ac.th</p>
+            <p>&copy; 2024 TravelZen. All rights reserved.</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #aaa;">
+                This website features AI-generated content including videos, images, and recommendations.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
+        }
+
+        // 确保视频可以播放
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('video');
+            if (video) {
+                // 尝试自动播放（静音模式）
+                video.muted = true;
+                video.play().catch(e => {
+                    console.log('自动播放被阻止，需要用户交互');
+                });
+                
+                // 点击页面时尝试播放
