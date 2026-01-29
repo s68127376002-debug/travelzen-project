@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelZen | Destinations</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; }
+        .navbar { background: #2C5F2D; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
+        .logo span { color: #FFB347; }
+        .nav-links a { color: white; margin-left: 1rem; text-decoration: none; }
+        .page-header { background: #007BFF; color: white; text-align: center; padding: 4rem 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .destinations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .destination-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .destination-card img { width: 100%; height: 200px; object-fit: cover; }
+        .destination-content { padding: 1.5rem; }
+        footer { background: #333; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Travel<span>Zen</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="destinations.html" style="font-weight: bold;">Destinations</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Explore Destinations</h1>
+        <p>AI-curated travel spots around the world</p>
+    </header>
+
+    <div class="container">
+        <div class="destinations-grid">
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bali">
+                <div class="destination-content">
+                    <h3>Bali, Indonesia</h3>
+                    <p>Tropical paradise with ancient temples</p>
+                    <p style="color: #2C5F2D; font-weight: bold;">⭐ AI Recommended</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kyoto">
+                <div class="destination-content">
+                    <h3>Kyoto, Japan</h3>
+                    <p>Traditional culture and cherry blossoms</p>
+                    <p style="color: #2C5F2D; font-weight: bold;">⭐ AI Featured</p>
+                </div>
+            </div>
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1534008897995-27a23e859048?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Swiss Alps">
+                <div class="destination-content">
+                    <h3>Swiss Alps</h3>
+                    <p>Majestic mountains and alpine villages</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>TravelZen Destinations</p>
+        <p>Email: s68127376002@ssru.ac.th</p>
+        <p>&copy; 2024 TravelZen</p>
+    </footer>
+</body>
+</html>
