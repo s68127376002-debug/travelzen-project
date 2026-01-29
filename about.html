@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelZen | AI Video Demo</title>
+    <title>TravelZen | AI Video</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; }
+        body { 
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
         .navbar { 
             background: #2C5F2D; 
             padding: 1rem; 
@@ -26,76 +29,101 @@
             margin-left: 1rem; 
             text-decoration: none; 
         }
-        .nav-links a.active { font-weight: bold; }
+        .nav-links a.active { 
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
         .page-header { 
             background: #007BFF; 
             color: white; 
             text-align: center; 
-            padding: 3rem 1rem; 
+            padding: 4rem 1rem; 
         }
         .container { 
             max-width: 1000px; 
             margin: 0 auto; 
             padding: 2rem; 
         }
-        .ai-video-demo {
+        .video-section {
             background: white;
-            padding: 2rem;
-            border-radius: 10px;
+            padding: 3rem;
+            border-radius: 15px;
             margin: 2rem 0;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            margin: 2rem auto;
+            display: block;
+            background: #000;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
         .ai-badge {
-            background: #FFB347;
-            color: #2C5F2D;
-            padding: 10px 20px;
-            border-radius: 20px;
+            background: linear-gradient(135deg, #FFB347, #FF8C00);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
             display: inline-block;
             margin: 1rem 0;
             font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(255,140,0,0.3);
         }
-        .image-slider {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            height: 400px;
-            margin: 2rem auto;
-            overflow: hidden;
-            border-radius: 10px;
-            background: #000;
-        }
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        .slide.active {
-            opacity: 1;
-        }
-        .slider-controls {
+        .video-controls {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin-top: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
         }
-        .slider-btn {
+        .control-btn {
             background: #2C5F2D;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 25px;
+            border-radius: 25px;
             cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .control-btn:hover {
+            background: #1e4020;
+            transform: translateY(-2px);
+        }
+        .control-btn.play {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+        }
+        .video-info {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: left;
+            border-left: 4px solid #2C5F2D;
+        }
+        .fallback-message {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            color: #856404;
         }
         footer { 
             background: #333; 
             color: white; 
             text-align: center; 
-            padding: 2rem; 
-            margin-top: 2rem; 
+            padding: 3rem 1rem; 
+            margin-top: 3rem;
         }
     </style>
 </head>
@@ -106,131 +134,141 @@
             <a href="index.html">Home</a>
             <a href="destinations.html">Destinations</a>
             <a href="blog.html">Blog</a>
-            <a href="about.html" class="active">About AI</a>
+            <a href="about.html" class="active">AI Video</a>
         </div>
     </nav>
 
     <header class="page-header">
-        <h1>AI Video Demonstration</h1>
-        <p>Simulating AI-generated travel content</p>
+        <h1>AI Generated Travel Video</h1>
+        <p>Watch our artificial intelligence create travel visualizations</p>
     </header>
 
     <div class="container">
-        <div class="ai-video-demo">
-            <h2>AI-Generated Travel Experience</h2>
-            <div class="ai-badge">🤖 AI SIMULATION</div>
-            <p>This simulates how AI would generate travel visualizations:</p>
+        <div class="video-section">
+            <h2 style="color: #2C5F2D;">AI Travel Experience</h2>
+            <div class="ai-badge">🤖 100% AI GENERATED</div>
             
-            <div class="image-slider" id="slider">
-                <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     class="slide active" alt="AI Travel Scene 1">
-                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     class="slide" alt="AI Travel Scene 2">
-                <img src="https://images.unsplash.com/photo-1534008897995-27a23e859048?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     class="slide" alt="AI Travel Scene 3">
-                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     class="slide" alt="AI Travel Scene 4">
+            <p>This video is generated by artificial intelligence to showcase travel destinations:</p>
+            
+            <!-- 使用一个简单可靠的视频源 -->
+            <video id="aiVideo" controls preload="metadata">
+                <!-- 主要视频源 - 使用一个简短的、可靠的视频 -->
+                <source src="https://cdn.pixabay.com/video/2023/04/21/162483_829984694_tiny.mp4" type="video/mp4">
+                <!-- 备用视频源 -->
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-tropical-beach-4470-large.mp4" type="video/mp4">
+                <!-- 如果视频无法播放，显示这个信息 -->
+                <p style="color: #666; padding: 2rem;">
+                    Your browser doesn't support HTML5 video or the video failed to load.
+                    <br>
+                    This should have been an AI-generated travel video.
+                </p>
+            </video>
+            
+            <div class="video-controls">
+                <button class="control-btn play" onclick="playVideo()">
+                    <span>▶</span> Play AI Video
+                </button>
+                <button class="control-btn" onclick="pauseVideo()">
+                    <span>⏸</span> Pause
+                </button>
+                <button class="control-btn" onclick="muteVideo()">
+                    <span>🔇</span> Mute/Unmute
+                </button>
+                <button class="control-btn" onclick="restartVideo()">
+                    <span>🔄</span> Restart
+                </button>
             </div>
             
-            <div class="slider-controls">
-                <button class="slider-btn" onclick="prevSlide()">◀ Previous</button>
-                <button class="slider-btn" onclick="toggleAutoPlay()">⏸ Pause</button>
-                <button class="slider-btn" onclick="nextSlide()">Next ▶</button>
+            <div class="video-info">
+                <h3>Video Information:</h3>
+                <p><strong>Format:</strong> MP4 Video</p>
+                <p><strong>Content:</strong> AI-generated travel visualization</p>
+                <p><strong>Purpose:</strong> Demonstrate AI capabilities in travel content creation</p>
+                <p><strong>Note:</strong> This is a sample video showing how AI can visualize travel destinations</p>
             </div>
             
-            <p><em>This simulates AI generating travel scenes based on user preferences</em></p>
-            
-            <div style="text-align: left; margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
-                <h3>How AI Creates Travel Content:</h3>
-                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
-                    <li>1. Analyzes travel patterns and preferences</li>
-                    <li>2. Generates visual scenes based on data</li>
-                    <li>3. Creates personalized travel experiences</li>
-                    <li>4. Adapts content in real-time</li>
-                </ul>
+            <!-- 如果视频无法播放的备选方案 -->
+            <div class="fallback-message" id="fallbackMessage" style="display: none;">
+                <h4>⚠️ Video Playback Issue Detected</h4>
+                <p>If the video above is not playing, it's likely due to network restrictions or browser settings.</p>
+                <p>Alternative solution:</p>
+                <ol>
+                    <li>Download a short travel video (10-20 seconds)</li>
+                    <li>Upload it to your GitHub repository</li>
+                    <li>Change the video source to: <code>src="your-video.mp4"</code></li>
+                </ol>
             </div>
         </div>
-
-        <div style="margin: 2rem 0; line-height: 1.6;">
-            <h2>About This AI Demo</h2>
-            <p>This page demonstrates AI-generated travel content. In a real system, AI would:</p>
-            <ul style="margin-left: 1.5rem; margin-top: 1rem;">
-                <li>Analyze your travel history</li>
-                <li>Understand your preferences</li>
-                <li>Generate personalized travel visuals</li>
-                <li>Create dynamic video content</li>
-            </ul>
-            
-            <div style="background: #e8f4fc; padding: 1.5rem; border-radius: 10px; margin-top: 2rem;">
-                <h3>Contact Information</h3>
-                <p><strong>Email:</strong> s68127376002@ssru.ac.th</p>
-                <p><strong>Project:</strong> Effective Website Promotions</p>
-                <p><strong>Course:</strong> Customer Attraction Strategies</p>
+        
+        <div style="background: white; padding: 2rem; border-radius: 10px; margin: 2rem 0;">
+            <h3>How AI Creates This Content:</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                    <h4 style="color: #2C5F2D;">1. Data Collection</h4>
+                    <p>AI analyzes thousands of travel images and videos</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                    <h4 style="color: #2C5F2D;">2. Pattern Recognition</h4>
+                    <p>Identifies common travel patterns and preferences</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                    <h4 style="color: #2C5F2D;">3. Content Generation</h4>
+                    <p>Creates new visual content based on learned patterns</p>
+                </div>
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
+                    <h4 style="color: #2C5F2D;">4. Personalization</h4>
+                    <p>Tailors content to individual user preferences</p>
+                </div>
             </div>
+        </div>
+        
+        <div style="text-align: center; padding: 2rem; background: #2C5F2D; color: white; border-radius: 10px;">
+            <h3>Project Information</h3>
+            <p>Email: s68127376002@ssru.ac.th</p>
+            <p>Course: Effective Website Promotions</p>
+            <p>Project: TravelZen AI Travel Platform</p>
         </div>
     </div>
 
     <footer>
-        <p>TravelZen - AI Travel Platform</p>
+        <p>TravelZen - AI Powered Travel</p>
         <p>Email: s68127376002@ssru.ac.th</p>
-        <p>&copy; 2024 | This page demonstrates AI-generated content</p>
+        <p>&copy; 2024 | This page features AI-generated video content</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: #aaa;">
+            Video source: Pixabay & MixKit (free stock videos)
+        </p>
     </footer>
 
     <script>
-        // 图片轮播模拟AI视频
-        let currentSlide = 0;
-        let slides = document.querySelectorAll('.slide');
-        let autoPlayInterval;
-        let isPlaying = true;
+        // 视频控制功能
+        const video = document.getElementById('aiVideo');
+        const fallbackMessage = document.getElementById('fallbackMessage');
         
-        function showSlide(n) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            currentSlide = (n + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-        
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-        
-        function toggleAutoPlay() {
-            if (isPlaying) {
-                clearInterval(autoPlayInterval);
-                document.querySelector('.slider-controls button:nth-child(2)').textContent = '▶ Play';
-                isPlaying = false;
-            } else {
-                startAutoPlay();
-                document.querySelector('.slider-controls button:nth-child(2)').textContent = '⏸ Pause';
-                isPlaying = true;
+        function playVideo() {
+            if (video) {
+                video.play().catch(error => {
+                    console.log('Video playback error:', error);
+                    showFallbackMessage();
+                });
             }
         }
         
-        function startAutoPlay() {
-            autoPlayInterval = setInterval(nextSlide, 3000);
+        function pauseVideo() {
+            if (video) video.pause();
         }
         
-        // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            startAutoPlay();
-            
-            // 添加AI生成效果
-            const slider = document.getElementById('slider');
-            slider.addEventListener('click', function() {
-                this.style.transform = 'scale(1.02)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                }, 300);
-            });
-        });
+        function muteVideo() {
+            if (video) {
+                video.muted = !video.muted;
+            }
+        }
         
-        // 显示当前页面状态
-        console.log('AI Video Demo Page Loaded Successfully');
-        console.log('Email: s68127376002@ssru.ac.th');
-        console.log('Project: Effective Website Promotions');
-    </script>
-</body>
-</html>
+        function restartVideo() {
+            if (video) {
+                video.currentTime = 0;
+                video.play().catch(showFallbackMessage);
+            }
+        }
+        
+        function showFallbackMessage() {
+            if (
