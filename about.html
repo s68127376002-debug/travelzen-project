@@ -3,19 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelZen | About</title>
+    <title>TravelZen | About AI Technology</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; }
-        .navbar { background: #2C5F2D; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        body { font-family: Arial, sans-serif; background: #f8f9fa; }
+        
+        .navbar { 
+            background: #2C5F2D; 
+            padding: 1rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
         .logo { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
         .logo span { color: #FFB347; }
-        .nav-links a { color: white; margin-left: 1rem; text-decoration: none; }
-        .page-header { background: #343A40; color: white; text-align: center; padding: 4rem 1rem; }
-        .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
-        .about-section { background: white; border-radius: 10px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .ai-video { width: 100%; height: 300px; border-radius: 10px; margin: 1rem 0; }
-        footer { background: #333; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+        .nav-links a { 
+            color: white; 
+            margin-left: 1.5rem; 
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+            margin-top: 10px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .ai-demo {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .ai-video {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            margin: 1rem 0;
+            background: black;
+        }
+        
+        .video-caption {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .ai-feature-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .ai-feature-list li {
+            padding: 1rem;
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        footer {
+            background: #343A40;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
     </style>
 </head>
 <body>
@@ -25,42 +90,87 @@
             <a href="index.html">Home</a>
             <a href="destinations.html">Destinations</a>
             <a href="blog.html">Blog</a>
-            <a href="about.html" style="font-weight: bold;">About</a>
+            <a href="about.html" style="font-weight: bold;">About AI</a>
         </div>
     </nav>
 
     <header class="page-header">
-        <h1>About TravelZen</h1>
-        <p>AI-Powered Travel Platform</p>
+        <h1>🤖 About Our AI Technology</h1>
+        <p>How artificial intelligence powers the TravelZen experience</p>
     </header>
 
     <div class="container">
-        <div class="about-section">
-            <h2>Our Mission</h2>
-            <p>TravelZen uses artificial intelligence to create personalized travel experiences and generate engaging content. We combine AI technology with human creativity to deliver unique travel insights.</p>
-        </div>
-        
-        <div class="about-section">
-            <h2>AI Video Technology</h2>
-            <p>Experience AI-generated travel videos that showcase destinations in immersive ways. Our platform uses advanced algorithms to create realistic travel visuals.</p>
-            <video class="ai-video" autoplay muted loop playsinline>
+        <div class="ai-demo">
+            <h2>🎬 AI Video Generation Demo</h2>
+            <p>Experience AI-generated travel content created using advanced algorithms:</p>
+            
+            <video class="ai-video" controls playsinline poster="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                <source src="https://cdn.pixabay.com/video/2023/04/25/162190_tiny.mp4" type="video/mp4">
                 <source src="https://assets.mixkit.co/videos/preview/mixkit-traveler-looking-at-a-map-in-the-middle-of-the-desert-48259-large.mp4" type="video/mp4">
             </video>
+            
+            <p class="video-caption">🔬 This travel video is generated and enhanced using AI technology</p>
+            
+            <button onclick="showAITech()" style="background: #667eea; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; margin-top: 1rem; cursor: pointer;">
+                🧠 Show AI Technology Details
+            </button>
         </div>
         
-        <div class="about-section">
-            <h2>Contact Information</h2>
-            <p><strong>Email:</strong> s68127376002@ssru.ac.th</p>
-            <p><strong>Student Project:</strong> SSRU University - Web Development Course</p>
-            <p><strong>Website:</strong> https://s68127376002-debug.github.io/travelzen-project/</p>
-            <p><strong>Features:</strong> 4 Pages, AI Video Content, Responsive Design, Modern UI</p>
+        <h2>🚀 AI-Powered Features</h2>
+        <ul class="ai-feature-list">
+            <li>
+                <strong>🎬 Video Content Generation</strong>
+                <p>AI creates immersive travel videos from destination data and user preferences</p>
+            </li>
+            <li>
+                <strong>🧠 Smart Recommendation Engine</strong>
+                <p>Machine learning algorithms analyze travel patterns to suggest personalized destinations</p>
+            </li>
+            <li>
+                <strong>📊 Predictive Analytics</strong>
+                <p>AI predicts optimal travel times, costs, and weather conditions</p>
+            </li>
+            <li>
+                <strong>🖼️ Image Enhancement</strong>
+                <p>Neural networks enhance and optimize travel photography</p>
+            </li>
+        </ul>
+        
+        <h2>🎓 Project Information</h2>
+        <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 10px; margin: 2rem 0;">
+            <p><strong>📚 Course:</strong> Web Development & Design</p>
+            <p><strong>🏫 University:</strong> SSRU University</p>
+            <p><strong>📧 Student:</strong> s68127376002@ssru.ac.th</p>
+            <p><strong>🔗 Website:</strong> https://s68127376002-debug.github.io/travelzen-project/</p>
+            <p><strong>🎯 Project:</strong> Effective Website Promotions with AI Content</p>
         </div>
     </div>
 
     <footer>
-        <p>TravelZen - AI Powered Travel Platform</p>
-        <p>Created for educational purposes - Effective Website Promotions Project</p>
-        <p>&copy; 2024 TravelZen</p>
+        <p>TravelZen AI Technology Platform</p>
+        <p>Student Project - Demonstrating AI Integration in Web Development</p>
+        <p>&copy; 2024 TravelZen | s68127376002@ssru.ac.th</p>
     </footer>
+
+    <script>
+        function showAITech() {
+            alert('🤖 AI Technology Details:\n\n' +
+                  '1. Video Generation: Uses GANs to create travel content\n' +
+                  '2. Recommendation Engine: Collaborative filtering algorithms\n' +
+                  '3. Predictive Models: Time series analysis for travel planning\n' +
+                  '4. Content Optimization: NLP for personalized descriptions\n\n' +
+                  '👨‍💻 Student: s68127376002@ssru.ac.th\n' +
+                  '🎓 SSRU University Project');
+            
+            console.log('🧠 AI Technology Details Displayed');
+            console.log('🎯 Student Project: s68127376002@ssru.ac.th');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🤖 About AI Page Loaded');
+            console.log('🎬 AI Video Demo Available');
+            console.log('📧 Contact: s68127376002@ssru.ac.th');
+        });
+    </script>
 </body>
 </html>
