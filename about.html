@@ -3,173 +3,489 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelZen | About AI Technology</title>
+    <title>TravelZen | AI Travel Assistant</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #f8f9fa; }
+        body { font-family: 'Arial', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #e3f2fd 100%); }
         
         .navbar { 
-            background: #2C5F2D; 
-            padding: 1rem; 
+            background: linear-gradient(135deg, #2C5F2D 0%, #388E3C 100%); 
+            padding: 1.2rem; 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
-        .logo { color: white; font-size: 1.5rem; font-weight: bold; text-decoration: none; }
-        .logo span { color: #FFB347; }
+        .logo { 
+            color: white; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo span { color: #FFD700; }
+        .nav-links { display: flex; gap: 2rem; }
         .nav-links a { 
             color: white; 
-            margin-left: 1.5rem; 
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
         }
         
         .page-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-align: center;
-            padding: 4rem 1rem;
+            padding: 5rem 1rem;
             margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-gif {
+            position: absolute;
+            bottom: 0;
+            right: 10%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.3);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
         }
         
-        .ai-demo {
+        .ai-human-demo {
             background: white;
-            border-radius: 15px;
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .demo-title {
+            color: #2C5F2D;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .human-gif-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .gif-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
             padding: 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .gif-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+        }
+        
+        .human-gif {
+            width: 100%;
+            height: 250px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 3px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .gif-description {
+            color: #555;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        
+        .ai-interaction {
+            background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+            color: #1a2980;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 4rem 0;
             text-align: center;
         }
         
-        .ai-video {
-            width: 100%;
-            height: 300px;
-            border-radius: 10px;
-            margin: 1rem 0;
-            background: black;
+        .interaction-title {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
         }
         
-        .video-caption {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-        
-        .ai-feature-list {
-            list-style: none;
+        .interaction-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
             margin: 2rem 0;
         }
         
-        .ai-feature-list li {
-            padding: 1rem;
+        .interaction-btn {
             background: white;
-            margin-bottom: 1rem;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
+            color: #1a2980;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .interaction-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .project-info {
+            background: linear-gradient(135deg, #2C5F2D 0%, #4CAF50 100%);
+            color: white;
+            padding: 4rem;
+            border-radius: 25px;
+            margin: 4rem 0;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .info-item {
+            background: rgba(255,255,255,0.15);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
         }
         
         footer {
-            background: #343A40;
+            background: #1a1a2e;
             color: white;
+            padding: 4rem 2rem;
             text-align: center;
-            padding: 3rem 2rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-gif {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 2rem auto;
+            overflow: hidden;
+            border: 3px solid #FFD700;
+        }
+        
+        @media (max-width: 768px) {
+            .header-gif { display: none; }
+            .human-gif-container { grid-template-columns: 1fr; }
+            .interaction-buttons { flex-direction: column; }
+            .container { padding: 2rem 1rem; }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="logo">Travel<span>Zen</span></a>
+        <a href="index.html" class="logo">
+            <span style="font-size: 2rem;">🌍</span> Travel<span>Zen</span>
+        </a>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="destinations.html">Destinations</a>
-            <a href="blog.html">Blog</a>
-            <a href="about.html" style="font-weight: bold;">About AI</a>
+            <a href="index.html">🏠 Home</a>
+            <a href="destinations.html">🗺️ Destinations</a>
+            <a href="blog.html">📝 Blog</a>
+            <a href="about.html" style="background: rgba(255,255,255,0.25);">🤖 About AI</a>
         </div>
     </nav>
 
     <header class="page-header">
-        <h1>🤖 About Our AI Technology</h1>
-        <p>How artificial intelligence powers the TravelZen experience</p>
+        <div style="max-width: 800px; margin: 0 auto; position: relative; z-index: 2;">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem;">🤖 MEET OUR AI TRAVEL ASSISTANT</h1>
+            <p style="font-size: 1.3rem; opacity: 0.9;">
+                Powered by artificial intelligence with human-like interaction capabilities
+            </p>
+        </div>
+        
+        <div class="header-gif">
+            <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" 
+                 alt="AI Assistant"
+                 style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
     </header>
 
     <div class="container">
-        <div class="ai-demo">
-            <h2>🎬 AI Video Generation Demo</h2>
-            <p>Experience AI-generated travel content created using advanced algorithms:</p>
+        <div class="ai-human-demo">
+            <h2 class="demo-title">
+                <span style="font-size: 3rem;">👥</span>
+                HUMAN-AI COLLABORATION
+            </h2>
+            <p style="font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto 3rem;">
+                Watch how AI collaborates with travelers to create personalized experiences
+            </p>
             
-            <video class="ai-video" controls playsinline poster="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
-                <source src="https://cdn.pixabay.com/video/2023/04/25/162190_tiny.mp4" type="video/mp4">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-traveler-looking-at-a-map-in-the-middle-of-the-desert-48259-large.mp4" type="video/mp4">
-            </video>
-            
-            <p class="video-caption">🔬 This travel video is generated and enhanced using AI technology</p>
-            
-            <button onclick="showAITech()" style="background: #667eea; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 25px; margin-top: 1rem; cursor: pointer;">
-                🧠 Show AI Technology Details
-            </button>
+            <div class="human-gif-container">
+                <div class="gif-card">
+                    <img src="https://media.giphy.com/media/26tknCqiJrBQG6Dr6/giphy.gif" 
+                         alt="Travel Planning"
+                         class="human-gif">
+                    <h3 style="color: #2C5F2D;">🗺️ AI Travel Planning</h3>
+                    <p class="gif-description">AI algorithms help plan perfect itineraries</p>
+                </div>
+                
+                <div class="gif-card">
+                    <img src="https://media.giphy.com/media/l0MYNK5jqBp5DpEMg/giphy.gif" 
+                         alt="Virtual Guide"
+                         class="human-gif">
+                    <h3 style="color: #2C5F2D;">👨‍🏫 Virtual AI Guide</h3>
+                    <p class="gif-description">Interactive AI assistant provides real-time guidance</p>
+                </div>
+                
+                <div class="gif-card">
+                    <img src="https://media.giphy.com/media/3o7aD2sa8MxLG7Yq7S/giphy.gif" 
+                         alt="Data Analysis"
+                         class="human-gif">
+                    <h3 style="color: #2C5F2D;">📊 Smart Analysis</h3>
+                    <p class="gif-description">AI processes travel data for optimal recommendations</p>
+                </div>
+            </div>
         </div>
         
-        <h2>🚀 AI-Powered Features</h2>
-        <ul class="ai-feature-list">
-            <li>
-                <strong>🎬 Video Content Generation</strong>
-                <p>AI creates immersive travel videos from destination data and user preferences</p>
-            </li>
-            <li>
-                <strong>🧠 Smart Recommendation Engine</strong>
-                <p>Machine learning algorithms analyze travel patterns to suggest personalized destinations</p>
-            </li>
-            <li>
-                <strong>📊 Predictive Analytics</strong>
-                <p>AI predicts optimal travel times, costs, and weather conditions</p>
-            </li>
-            <li>
-                <strong>🖼️ Image Enhancement</strong>
-                <p>Neural networks enhance and optimize travel photography</p>
-            </li>
-        </ul>
+        <div class="ai-interaction">
+            <h2 class="interaction-title">💬 INTERACT WITH OUR AI</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Experience human-like AI interaction for your travel needs
+            </p>
+            
+            <div class="interaction-buttons">
+                <button onclick="askAITravel()" class="interaction-btn">
+                    <span style="font-size: 1.5rem;">✈️</span>
+                    Ask AI for Travel Tips
+                </button>
+                
+                <button onclick="planWithAI()" class="interaction-btn">
+                    <span style="font-size: 1.5rem;">🗓️</span>
+                    Plan Trip with AI
+                </button>
+                
+                <button onclick="meetAIAssistant()" class="interaction-btn">
+                    <span style="font-size: 1.5rem;">🤖</span>
+                    Meet AI Assistant
+                </button>
+            </div>
+            
+            <div style="margin-top: 3rem;">
+                <img src="https://media.giphy.com/media/3o7abAHdYvZdBNnGZq/giphy.gif" 
+                     alt="AI Conversation"
+                     style="width: 200px; height: 200px; border-radius: 50%; border: 5px solid white;">
+                <p style="margin-top: 1rem; font-weight: bold;">AI Assistant is ready to help! 👋</p>
+            </div>
+        </div>
         
-        <h2>🎓 Project Information</h2>
-        <div style="background: #e3f2fd; padding: 1.5rem; border-radius: 10px; margin: 2rem 0;">
-            <p><strong>📚 Course:</strong> Web Development & Design</p>
-            <p><strong>🏫 University:</strong> SSRU University</p>
-            <p><strong>📧 Student:</strong> s68127376002@ssru.ac.th</p>
-            <p><strong>🔗 Website:</strong> https://s68127376002-debug.github.io/travelzen-project/</p>
-            <p><strong>🎯 Project:</strong> Effective Website Promotions with AI Content</p>
+        <div class="project-info">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">🎓 STUDENT PROJECT DETAILS</h2>
+            
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3 style="color: #FFD700;">👨‍🎓 Student Info</h3>
+                    <p><strong>Name:</strong> s68127376002</p>
+                    <p><strong>Email:</strong> s68127376002@ssru.ac.th</p>
+                    <p><strong>University:</strong> SSRU</p>
+                </div>
+                
+                <div class="info-item">
+                    <h3 style="color: #FFD700;">📚 Project Details</h3>
+                    <p><strong>Course:</strong> Web Development</p>
+                    <p><strong>Pages:</strong> 4 Complete Pages</p>
+                    <p><strong>Features:</strong> AI GIFs + Interaction</p>
+                </div>
+                
+                <div class="info-item">
+                    <h3 style="color: #FFD700;">✨ AI Features</h3>
+                    <p>• Human-like GIF animations</p>
+                    <p>• Interactive AI simulation</p>
+                    <p>• Real-time travel planning</p>
+                </div>
+                
+                <div class="info-item">
+                    <h3 style="color: #FFD700;">🔗 Live Demo</h3>
+                    <p><strong>Website:</strong></p>
+                    <p style="word-break: break-all;">s68127376002-debug.github.io/travelzen-project</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <button onclick="showProjectDemo()" style="
+                    background: #FFD700;
+                    color: #1a2980;
+                    border: none;
+                    padding: 1rem 3rem;
+                    border-radius: 30px;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                ">
+                    🎬 SHOW FULL PROJECT DEMO
+                </button>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>TravelZen AI Technology Platform</p>
-        <p>Student Project - Demonstrating AI Integration in Web Development</p>
-        <p>&copy; 2024 TravelZen | s68127376002@ssru.ac.th</p>
+        <h2 style="color: #FFD700; font-size: 2rem; margin-bottom: 1rem;">TRAVELZEN AI PLATFORM</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            A demonstration of AI-human collaboration in travel technology
+        </p>
+        
+        <div class="footer-gif">
+            <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" 
+                 alt="AI Wave"
+                 style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <p><strong>👨‍💻 Developer:</strong> s68127376002@ssru.ac.th</p>
+            <p><strong>🎓 University:</strong> SSRU - Web Development Course</p>
+            <p><strong>📅 Year:</strong> 2024</p>
+        </div>
+        
+        <p style="margin-top: 3rem; font-size: 0.9rem; opacity: 0.7;">
+            This educational project demonstrates AI integration in web development.
+            All GIF animations showcase potential AI-human interaction scenarios.
+        </p>
+        
+        <p style="margin-top: 2rem;">
+            &copy; 2024 TravelZen AI Travel Platform | Student Project
+        </p>
     </footer>
 
     <script>
-        function showAITech() {
-            alert('🤖 AI Technology Details:\n\n' +
-                  '1. Video Generation: Uses GANs to create travel content\n' +
-                  '2. Recommendation Engine: Collaborative filtering algorithms\n' +
-                  '3. Predictive Models: Time series analysis for travel planning\n' +
-                  '4. Content Optimization: NLP for personalized descriptions\n\n' +
-                  '👨‍💻 Student: s68127376002@ssru.ac.th\n' +
-                  '🎓 SSRU University Project');
+        // AI交互功能
+        function askAITravel() {
+            const responses = [
+                "🌍 I recommend Bali for tropical beaches and culture!",
+                "🗺️ Kyoto is perfect for traditional Japanese experiences!",
+                "⛰️ Swiss Alps offer breathtaking mountain adventures!",
+                "🏛️ Rome has incredible historical sites to explore!",
+                "🏖️ Thailand has amazing food and beautiful islands!"
+            ];
             
-            console.log('🧠 AI Technology Details Displayed');
-            console.log('🎯 Student Project: s68127376002@ssru.ac.th');
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            
+            alert('🤖 AI TRAVEL ASSISTANT:\n\n' + randomResponse + '\n\n' +
+                  '👨‍🎓 Student: s68127376002@ssru.ac.th\n' +
+                  '🔗 Project: TravelZen AI Platform');
+            
+            console.log('🗣️ AI Travel Advice Given:', randomResponse);
         }
         
+        function planWithAI() {
+            alert('🗓️ AI TRIP PLANNER ACTIVATED\n\n' +
+                  '🤖 Your AI assistant will help you plan:\n' +
+                  '• Optimal travel dates\n' +
+                  '• Budget-friendly accommodations\n' +
+                  '• Local experiences\n' +
+                  '• Transportation options\n\n' +
+                  '📧 Student: s68127376002@ssru.ac.th\n' +
+                  '🏫 SSRU University Project');
+            
+            // 显示AI规划动画
+            console.log('📅 AI Trip Planning Started');
+            console.log('👤 Student: s68127376002@ssru.ac.th');
+        }
+        
+        function meetAIAssistant() {
+            alert('👋 MEET YOUR AI TRAVEL ASSISTANT\n\n' +
+                  'Name: Zen\n' +
+                  'Role: Travel Planning AI\n' +
+                  'Skills: Itinerary optimization, budget planning, local insights\n' +
+                  'Languages: All major languages\n\n' +
+                  '💬 "Hello! I\'m Zen, your AI travel assistant.\n' +
+                  'I can help you discover amazing destinations!"\n\n' +
+                  '🎓 Student Project: s68127376002@ssru.ac.th');
+            
+            console.log('🤖 AI Assistant "Zen" Introduced');
+        }
+        
+        function showProjectDemo() {
+            alert('🎬 FULL PROJECT DEMONSTRATION\n\n' +
+                  '🚀 TravelZen AI Platform Features:\n\n' +
+                  '1. 🤖 AI-Powered Homepage\n' +
+                  '   • Animated AI effects\n' +
+                  '   • Interactive elements\n\n' +
+                  '2. 🗺️ Smart Destinations Page\n' +
+                  '   • AI-curated locations\n' +
+                  '   • Personalized recommendations\n\n' +
+                  '3. 📝 AI Blog Content\n' +
+                  '   • Generated travel articles\n' +
+                  '   • Smart categorization\n\n' +
+                  '4. 👥 Human-AI Interaction (This Page)\n' +
+                  '   • GIF animations\n' +
+                  '   • Interactive buttons\n' +
+                  '   • Project information\n\n' +
+                  '👨‍🎓 Student: s68127376002@ssru.ac.th\n' +
+                  '🏫 University: SSRU\n' +
+                  '🔗 Live at: s68127376002-debug.github.io/travelzen-project\n\n' +
+                  '✅ Project Complete! Ready for submission.');
+            
+            console.log('===================================');
+            console.log('🎬 FULL PROJECT DEMO SHOWN');
+            console.log('👨‍🎓 Student: s68127376002@ssru.ac.th');
+            console.log('🏫 SSRU University');
+            console.log('🔗 GitHub: s68127376002-debug');
+            console.log('🌐 Live Site: github.io/travelzen-project');
+            console.log('✨ Pages: 4 Complete Pages');
+            console.log('🤖 Features: AI GIFs + Interaction');
+            console.log('===================================');
+        }
+        
+        // 页面加载完成
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🤖 About AI Page Loaded');
-            console.log('🎬 AI Video Demo Available');
-            console.log('📧 Contact: s68127376002@ssru.ac.th');
+            console.log('🤖 ===============================');
+            console.log('🚀 ABOUT AI PAGE LOADED SUCCESS');
+            console.log('👥 Features: Human GIF Animations');
+            console.log('💬 Interactive AI Buttons');
+            console.log('🎓 Student: s68127376002@ssru.ac.th');
+            console.log('🏫 SSRU Web Development Project');
+            console.log('🔗 Live Demo: github.io/travelzen-project');
+            console.log('🤖 ===============================');
+            
+            // 页面淡入效果
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.8s';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 300);
         });
     </script>
 </body>
