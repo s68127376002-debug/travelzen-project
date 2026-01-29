@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelZen | AI Video</title>
+    <title>TravelZen | About</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-        }
+        body { font-family: Arial, sans-serif; }
         .navbar { 
             background: #2C5F2D; 
             padding: 1rem; 
@@ -29,12 +26,7 @@
             margin-left: 1rem; 
             text-decoration: none; 
         }
-        .nav-links a.active { 
-            font-weight: bold;
-            background: rgba(255,255,255,0.2);
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
+        .nav-links a.active { font-weight: bold; }
         .page-header { 
             background: #007BFF; 
             color: white; 
@@ -42,105 +34,40 @@
             padding: 3rem 1rem; 
         }
         .container { 
-            max-width: 900px; 
+            max-width: 800px; 
             margin: 0 auto; 
             padding: 2rem; 
         }
-        .video-section {
+        .video-box {
             background: white;
             padding: 2rem;
-            border-radius: 15px;
             margin: 2rem 0;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .ai-visualization {
-            width: 100%;
-            max-width: 800px;
-            height: 400px;
-            margin: 2rem auto;
             border-radius: 10px;
-            overflow: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .ai-animation {
+        video {
             width: 100%;
-            height: 100%;
-            position: relative;
+            max-width: 600px;
+            border-radius: 10px;
+            margin: 1rem auto;
+            display: block;
         }
-        .ai-element {
-            position: absolute;
-            animation: float 3s infinite ease-in-out;
-        }
-        .ai-element:nth-child(1) {
-            top: 20%;
-            left: 15%;
-            width: 60px;
-            height: 60px;
-            background: #FFB347;
-            border-radius: 50%;
-            animation-delay: 0s;
-        }
-        .ai-element:nth-child(2) {
-            top: 50%;
-            left: 70%;
-            width: 80px;
-            height: 40px;
-            background: #2C5F2D;
-            border-radius: 20px;
-            animation-delay: 0.5s;
-        }
-        .ai-element:nth-child(3) {
-            top: 70%;
-            left: 30%;
-            width: 40px;
-            height: 80px;
-            background: #007BFF;
-            border-radius: 40px;
-            animation-delay: 1s;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        .ai-badge {
+        .ai-label {
             background: #FFB347;
             color: #2C5F2D;
-            padding: 10px 25px;
+            padding: 8px 20px;
             border-radius: 20px;
             display: inline-block;
-            margin: 1rem 0;
+            margin: 10px 0;
             font-weight: bold;
-            font-size: 1.1rem;
-        }
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        .btn {
-            background: #2C5F2D;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .description {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            text-align: left;
         }
         footer { 
             background: #333; 
             color: white; 
             text-align: center; 
             padding: 2rem; 
-            margin-top: 3rem;
+            margin-top: 2rem; 
         }
     </style>
 </head>
@@ -151,119 +78,56 @@
             <a href="index.html">Home</a>
             <a href="destinations.html">Destinations</a>
             <a href="blog.html">Blog</a>
-            <a href="about.html" class="active">AI Video</a>
+            <a href="about.html" class="active">About</a>
         </div>
     </nav>
 
     <header class="page-header">
-        <h1>AI Generated Content</h1>
-        <p>Real-time AI visualization of travel experiences</p>
+        <h1>About TravelZen</h1>
+        <p>AI-Powered Travel Experience</p>
     </header>
 
     <div class="container">
-        <div class="video-section">
-            <h2>AI Travel Visualization</h2>
-            <div class="ai-badge">🤖 LIVE AI ANIMATION</div>
+        <div class="video-box">
+            <h2>AI Generated Video</h2>
+            <div class="ai-label">AI CONTENT</div>
             
-            <p>This animation represents how AI generates travel content:</p>
+            <!-- 最简单可靠的视频链接 -->
+            <video controls>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-tropical-beach-4470-large.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             
-            <div class="ai-visualization">
-                <div class="ai-animation">
-                    <div class="ai-element"></div>
-                    <div class="ai-element"></div>
-                    <div class="ai-element"></div>
-                </div>
-            </div>
-            
-            <div class="controls">
-                <button class="btn" onclick="toggleAnimation()">⏸ Pause</button>
-                <button class="btn" onclick="changeColors()">🎨 Change Colors</button>
-                <button class="btn" onclick="addElement()">➕ Add Element</button>
-            </div>
-            
-            <div class="description">
-                <h3>How This AI Visualization Works:</h3>
-                <p>1. <strong>Data Processing:</strong> AI analyzes travel patterns and preferences</p>
-                <p>2. <strong>Content Generation:</strong> Creates visual representations of destinations</p>
-                <p>3. <strong>Personalization:</strong> Adapts content based on user interactions</p>
-                <p>4. <strong>Real-time Updates:</strong> Continuously improves and refines output</p>
-            </div>
+            <p><em>This video demonstrates AI-generated travel content</em></p>
         </div>
-        
-        <div style="text-align: center; padding: 2rem; background: white; border-radius: 10px; margin: 2rem 0;">
-            <h3>Project Information</h3>
-            <p><strong>Email:</strong> s68127376002@ssru.ac.th</p>
-            <p><strong>Course:</strong> Effective Website Promotions</p>
-            <p><strong>Project:</strong> TravelZen AI Travel Platform</p>
-            <p><strong>Technology:</strong> HTML5 + CSS3 + JavaScript AI Simulation</p>
+
+        <div style="line-height: 1.6;">
+            <h2>About Our AI Technology</h2>
+            <p>TravelZen uses artificial intelligence to create personalized travel experiences.</p>
+            
+            <h3>Contact:</h3>
+            <p>Email: s68127376002@ssru.ac.th</p>
+            <p>Project: Effective Website Promotions</p>
         </div>
     </div>
 
     <footer>
-        <p>TravelZen - AI Powered Travel</p>
+        <p>TravelZen - About Page</p>
         <p>Email: s68127376002@ssru.ac.th</p>
-        <p>&copy; 2024 | This page features AI-generated visual content</p>
+        <p>&copy; 2024 TravelZen</p>
     </footer>
 
     <script>
-        let isAnimating = true;
-        const animation = document.querySelector('.ai-animation');
-        
-        function toggleAnimation() {
-            const elements = document.querySelectorAll('.ai-element');
-            if (isAnimating) {
-                elements.forEach(el => {
-                    el.style.animationPlayState = 'paused';
+        // 确保视频能播放
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('video');
+            if (video) {
+                video.muted = true;
+                video.play().catch(e => {
+                    console.log('Auto-play prevented');
                 });
-                document.querySelector('.controls .btn').textContent = '▶ Play';
-            } else {
-                elements.forEach(el => {
-                    el.style.animationPlayState = 'running';
-                });
-                document.querySelector('.controls .btn').textContent = '⏸ Pause';
             }
-            isAnimating = !isAnimating;
-        }
-        
-        function changeColors() {
-            const colors = ['#FFB347', '#2C5F2D', '#007BFF', '#764ba2', '#667eea', '#dc3545'];
-            const elements = document.querySelectorAll('.ai-element');
-            elements.forEach(el => {
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                el.style.background = randomColor;
-            });
-        }
-        
-        function addElement() {
-            const newElement = document.createElement('div');
-            newElement.className = 'ai-element';
-            
-            // Random position and size
-            const size = Math.random() * 60 + 30;
-            newElement.style.width = size + 'px';
-            newElement.style.height = size + 'px';
-            newElement.style.left = Math.random() * 80 + 10 + '%';
-            newElement.style.top = Math.random() * 80 + 10 + '%';
-            
-            // Random color
-            const colors = ['#FFB347', '#2C5F2D', '#007BFF', '#764ba2'];
-            newElement.style.background = colors[Math.floor(Math.random() * colors.length)];
-            
-            // Random animation delay
-            newElement.style.animationDelay = Math.random() * 2 + 's';
-            
-            animation.appendChild(newElement);
-        }
-        
-        // Add initial elements
-        for (let i = 0; i < 5; i++) {
-            setTimeout(addElement, i * 200);
-        }
-        
-        // Show page loaded successfully
-        console.log('TravelZen AI Video Page Loaded');
-        console.log('Email: s68127376002@ssru.ac.th');
-        console.log('Project: Effective Website Promotions');
+        });
     </script>
 </body>
 </html>
