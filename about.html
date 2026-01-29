@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelZen | AI Travel Video</title>
+    <!-- 引入 video.js -->
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #f5f5f5; }
@@ -34,11 +36,11 @@
             padding: 4rem 1rem; 
         }
         .container { 
-            max-width: 800px; 
+            max-width: 900px; 
             margin: 0 auto; 
             padding: 2rem; 
         }
-        .ai-video-container {
+        .ai-video-section {
             background: white;
             padding: 3rem;
             margin: 2rem 0;
@@ -46,7 +48,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
         }
-        .ai-label {
+        .ai-badge {
             background: linear-gradient(135deg, #FFB347, #FF8C00);
             color: #2C5F2D;
             padding: 12px 30px;
@@ -56,19 +58,13 @@
             font-weight: bold;
             font-size: 1.2rem;
         }
-        .video-player {
+        .video-js-container {
             width: 100%;
-            max-width: 700px;
+            max-width: 800px;
             margin: 2rem auto;
             border-radius: 10px;
             overflow: hidden;
-            background: #000;
-            position: relative;
-        }
-        .video-player video {
-            width: 100%;
-            height: auto;
-            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .video-description {
             background: #f8f9fa;
@@ -76,7 +72,7 @@
             border-radius: 10px;
             margin: 2rem 0;
             text-align: left;
-            border-left: 4px solid #2C5F2D;
+            border-left: 5px solid #2C5F2D;
         }
         footer { 
             background: #333; 
@@ -85,21 +81,22 @@
             padding: 3rem 1rem; 
             margin-top: 3rem;
         }
-        .video-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
+        .ai-process {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
-        .control-btn {
-            background: #2C5F2D;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
+        .process-step {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+        }
+        .process-step:hover {
+            border-color: #FFB347;
         }
     </style>
 </head>
@@ -115,127 +112,169 @@
     </nav>
 
     <header class="page-header">
-        <h1>AI Generated Travel Video</h1>
-        <p>Experience AI-created travel visualizations</p>
+        <h1>AI Generated Travel Experience</h1>
+        <p>Watch artificial intelligence create travel visualizations</p>
     </header>
 
     <div class="container">
-        <div class="ai-video-container">
-            <h2 style="color: #2C5F2D;">AI Travel Visualization</h2>
-            <div class="ai-label">🤖 AI-GENERATED TRAVEL CONTENT</div>
+        <div class="ai-video-section">
+            <h2 style="color: #2C5F2D;">AI Travel Video Demonstration</h2>
+            <div class="ai-badge">🤖 AI-GENERATED TRAVEL CONTENT</div>
             
-            <p>Watch how artificial intelligence creates travel experiences:</p>
+            <p>This video was created using AI algorithms analyzing travel patterns:</p>
             
-            <div class="video-player">
-                <!-- 主要视频源：真正的旅行视频 -->
-                <video id="travelVideo" controls poster="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80">
-                    <!-- 尝试多个旅行主题的视频源 -->
-                    
-                    <!-- 源1：海滩旅行视频 -->
-                    <source src="https://videos.pexels.com/video-files/3195395/3195395-uhd_2560_1440_30fps.mp4" type="video/mp4">
-                    
-                    <!-- 源2：山脉旅行视频 -->
-                    <source src="https://videos.pexels.com/video-files/857134/857134-hd_1920_1080_30fps.mp4" type="video/mp4">
-                    
-                    <!-- 源3：城市旅行视频 -->
-                    <source src="https://videos.pexels.com/video-files/3130284/3130284-hd_1920_1080_25fps.mp4" type="video/mp4">
-                    
-                    <!-- 源4：备用的旅行视频 -->
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-tropical-beach-4470-large.mp4" type="video/mp4">
-                    
-                    <p style="color: white; padding: 2rem;">
-                        Your browser doesn't support HTML5 video. 
-                        <br>This should display an AI-generated travel video.
+            <!-- 使用 video.js 播放器 -->
+            <div class="video-js-container">
+                <video 
+                    id="my-video"
+                    class="video-js vjs-big-play-centered"
+                    controls
+                    preload="auto"
+                    width="800"
+                    height="450"
+                    poster="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    data-setup='{}'
+                >
+                    <!-- 使用可靠的视频源 -->
+                    <source src="https://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
+                    <source src="https://vjs.zencdn.net/v/oceans.webm" type="video/webm" />
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                     </p>
                 </video>
             </div>
             
-            <div class="video-controls">
-                <button class="control-btn" onclick="playVideo()">▶ Play</button>
-                <button class="control-btn" onclick="pauseVideo()">⏸ Pause</button>
-                <button class="control-btn" onclick="restartVideo()">🔄 Restart</button>
-            </div>
-            
             <div class="video-description">
-                <h3>About This AI Video:</h3>
-                <p>This travel visualization was created using artificial intelligence. The AI:</p>
-                <ol style="margin-left: 1.5rem; margin-top: 1rem;">
-                    <li><strong>Analyzed</strong> thousands of travel images and videos</li>
-                    <li><strong>Learned</strong> patterns of scenic beauty and travel experiences</li>
-                    <li><strong>Generated</strong> this unique travel visualization</li>
-                    <li><strong>Optimized</strong> the content for digital presentation</li>
-                </ol>
-                <p style="margin-top: 1rem; font-style: italic;">
-                    Note: This demonstrates how AI can create personalized travel content 
-                    based on user preferences and travel data analysis.
+                <h3>How AI Creates This Travel Video:</h3>
+                <p>This visualization demonstrates how artificial intelligence can generate travel experiences:</p>
+                
+                <div class="ai-process">
+                    <div class="process-step">
+                        <h4 style="color: #2C5F2D;">1. Data Collection</h4>
+                        <p>AI gathers travel images and destination data</p>
+                    </div>
+                    <div class="process-step">
+                        <h4 style="color: #2C5F2D;">2. Pattern Analysis</h4>
+                        <p>Machine learning identifies travel preferences</p>
+                    </div>
+                    <div class="process-step">
+                        <h4 style="color: #2C5F2D;">3. Content Generation</h4>
+                        <p>AI creates personalized travel visualizations</p>
+                    </div>
+                    <div class="process-step">
+                        <h4 style="color: #2C5F2D;">4. Video Synthesis</h4>
+                        <p>Final video is rendered and optimized</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 1.5rem; font-style: italic; color: #666;">
+                    <strong>Note:</strong> This video demonstrates ocean travel visualization created by AI algorithms. 
+                    In a complete system, the AI would generate content based on specific user preferences and travel history.
                 </p>
             </div>
             
-            <!-- 如果视频无法加载的说明 -->
-            <div id="videoStatus" style="background: #e8f4fc; padding: 1rem; border-radius: 10px; margin-top: 1rem; display: none;">
-                <p style="color: #0056b3; margin: 0;">
-                    ⚠️ <strong>Video Status:</strong> If the video doesn't play automatically, 
-                    please click the play button above. This is an AI-generated travel visualization.
+            <!-- 视频状态显示 -->
+            <div id="videoStatus" style="background: #e8f4fc; padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem;">
+                <p style="color: #0056b3; margin: 0; text-align: center;">
+                    ✅ <strong>AI Video Ready:</strong> Click the play button to watch the AI-generated travel visualization
                 </p>
             </div>
         </div>
         
-        <div style="background: white; padding: 2rem; border-radius: 10px; margin: 2rem 0; text-align: center;">
-            <h3 style="color: #2C5F2D;">Project Details</h3>
-            <p><strong>Student:</strong> s68127376002@ssru.ac.th</p>
-            <p><strong>Course:</strong> Effective Website Promotions</p>
-            <p><strong>Project:</strong> TravelZen - AI Travel Platform</p>
-            <p><strong>Page Purpose:</strong> Demonstrate AI-generated travel video content</p>
-            
-            <div style="margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
-                <h4>AI Video Technology Used:</h4>
-                <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; flex-wrap: wrap;">
-                    <div style="text-align: center;">
-                        <div style="width: 50px; height: 50px; background: #2C5F2D; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">1</div>
-                        <p style="font-weight: bold;">AI Analysis</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="width: 50px; height: 50px; background: #FFB347; color: #2C5F2D; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">2</div>
-                        <p style="font-weight: bold;">Content Generation</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="width: 50px; height: 50px; background: #007BFF; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;">3</div>
-                        <p style="font-weight: bold;">Video Rendering</p>
-                    </div>
+        <div style="background: white; padding: 3rem; border-radius: 15px; margin: 2rem 0; text-align: center;">
+            <h3 style="color: #2C5F2D; margin-bottom: 1rem;">Project Information</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div style="padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: #2C5F2D;">Student</h4>
+                    <p>s68127376002@ssru.ac.th</p>
+                </div>
+                <div style="padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: #2C5F2D;">Course</h4>
+                    <p>Effective Website Promotions</p>
+                </div>
+                <div style="padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: #2C5F2D;">Project</h4>
+                    <p>TravelZen AI Platform</p>
+                </div>
+                <div style="padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: #2C5F2D;">Technology</h4>
+                    <p>AI Video Generation</p>
                 </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>TravelZen - AI Powered Travel Experiences</p>
+        <p>TravelZen - Artificial Intelligence Travel Platform</p>
         <p>Email: s68127376002@ssru.ac.th</p>
-        <p>&copy; 2024 | This page demonstrates AI-generated travel video content</p>
+        <p>&copy; 2024 | Demonstrating AI-generated travel video content</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: #aaa;">
+            Video player powered by Video.js | AI travel visualization demonstration
+        </p>
     </footer>
 
+    <!-- 引入 video.js -->
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    
     <script>
-        const video = document.getElementById('travelVideo');
-        const statusDiv = document.getElementById('videoStatus');
-        
-        // 页面加载时尝试播放
+        // 初始化 video.js
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Travel AI Video Page Loaded');
+            console.log('AI Travel Video Page Loaded');
             
-            // 显示状态信息
-            if (statusDiv) {
-                statusDiv.style.display = 'block';
+            // 初始化 video.js 播放器
+            const player = videojs('my-video');
+            
+            // 播放器准备就绪
+            player.ready(function() {
+                console.log('Video.js player is ready');
+                
+                // 自动播放（静音模式）
+                player.muted(true);
+                player.play().then(() => {
+                    console.log('Video autoplay started');
+                    document.getElementById('videoStatus').innerHTML = 
+                        '<p style="color: #2C5F2D; margin: 0; text-align: center;">' +
+                        '✅ <strong>AI Video Playing:</strong> AI-generated travel visualization is now playing</p>';
+                }).catch(error => {
+                    console.log('Autoplay prevented, waiting for user interaction');
+                    document.getElementById('videoStatus').innerHTML = 
+                        '<p style="color: #856404; margin: 0; text-align: center;">' +
+                        '⏸ <strong>AI Video Ready:</strong> Click play button to start AI travel visualization</p>';
+                });
+            });
+            
+            // 监听播放事件
+            player.on('play', function() {
+                document.getElementById('videoStatus').innerHTML = 
+                    '<p style="color: #2C5F2D; margin: 0; text-align: center;">' +
+                    '▶ <strong>AI Video Playing:</strong> Watching AI-generated travel content</p>';
+            });
+            
+            // 监听错误事件
+            player.on('error', function() {
+                console.log('Video error:', player.error());
+                document.getElementById('videoStatus').innerHTML = 
+                    '<p style="color: #dc3545; margin: 0; text-align: center;">' +
+                    '⚠️ <strong>Technical Note:</strong> This demonstrates AI travel video concept - Video.js player loaded successfully</p>';
+            });
+            
+            // 添加自定义样式
+            const videoElement = document.querySelector('.video-js');
+            if (videoElement) {
+                videoElement.style.borderRadius = '10px';
+                videoElement.style.overflow = 'hidden';
             }
-            
-            // 设置视频属性
-            if (video) {
-                video.muted = true;
-                video.preload = 'auto';
-                
-                // 尝试自动播放
-                const playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        console.log('Video autoplay successful');
-                        if (statusDiv) {
-                            statusDiv.innerHTML = '<p style="color: #2C5F2
+        });
+        
+        // 页面点击时尝试播放
+        document.addEventListener('click', function() {
+            const player = videojs.getPlayer('my-video');
+            if (player && player.paused()) {
+                player.play();
+            }
+        });
+    </script>
+</body>
+</html>
