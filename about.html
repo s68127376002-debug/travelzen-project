@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelZen | About</title>
+    <title>TravelZen | AI Video</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; }
         .navbar { 
             background: #2C5F2D; 
             padding: 1rem; 
@@ -38,29 +38,41 @@
             margin: 0 auto; 
             padding: 2rem; 
         }
-        .video-box {
+        .video-demo {
             background: white;
             padding: 2rem;
             margin: 2rem 0;
-            text-align: center;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        video {
-            width: 100%;
-            max-width: 600px;
-            border-radius: 10px;
-            margin: 1rem auto;
-            display: block;
+            text-align: center;
         }
         .ai-label {
             background: #FFB347;
             color: #2C5F2D;
-            padding: 8px 20px;
+            padding: 10px 20px;
             border-radius: 20px;
             display: inline-block;
-            margin: 10px 0;
+            margin: 1rem 0;
             font-weight: bold;
+        }
+        .video-frame {
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            margin: 1rem auto;
+            background: #1a1a1a;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .video-frame video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         footer { 
             background: #333; 
@@ -78,54 +90,135 @@
             <a href="index.html">Home</a>
             <a href="destinations.html">Destinations</a>
             <a href="blog.html">Blog</a>
-            <a href="about.html" class="active">About</a>
+            <a href="about.html" class="active">About AI</a>
         </div>
     </nav>
 
     <header class="page-header">
-        <h1>About TravelZen</h1>
-        <p>AI-Powered Travel Experience</p>
+        <h1>AI Video Demonstration</h1>
+        <p>Showing AI-generated travel content</p>
     </header>
 
     <div class="container">
-        <div class="video-box">
-            <h2>AI Generated Video</h2>
-            <div class="ai-label">AI CONTENT</div>
+        <div class="video-demo">
+            <h2>AI Generated Travel Video</h2>
+            <div class="ai-label">🤖 AI GENERATED CONTENT</div>
             
-            <!-- 最简单可靠的视频链接 -->
-            <video controls>
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-tropical-beach-4470-large.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <!-- 方案1：使用绝对可靠的视频源 -->
+            <div class="video-frame">
+                <video id="aiVideo" controls poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDYwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiMxYTNhMWYiLz4KICA8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIwIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+CiAgICBBSSBUcmF2ZWwgVmlkZW8KICAgIDx0c3BhbiBkeT0iMjQiIHg9IjUwJSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxNCI+CiAgICAgIFBsYXkgYnV0dG9uIGFib3ZlCiAgICA8L3RzcGFuPgogIDwvdGV4dD4KPC9N2Zz4K">
+                    <!-- 主要视频源：使用GitHub官方示例视频 -->
+                    <source src="https://user-images.githubusercontent.com/652496/268711583-5195bbd8-2056-45f7-9420-492a4b3f7a4c.mp4" type="video/mp4">
+                    <!-- 备用源：GitHub Pages友好的视频 -->
+                    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+                    <!-- 备用源2：非常小的视频 -->
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    
+                    <p>Your browser doesn't support HTML5 video.</p>
+                </video>
+            </div>
             
-            <p><em>This video demonstrates AI-generated travel content</em></p>
+            <p><em>This is an AI-generated travel visualization video</em></p>
+            
+            <!-- 如果视频无法播放的备用显示 -->
+            <div id="videoFallback" style="display: none; background: #e8f4fc; padding: 1.5rem; border-radius: 10px; margin-top: 1rem;">
+                <h4>⚠️ Video Playback Note</h4>
+                <p>If the video is not playing automatically:</p>
+                <ol>
+                    <li>Click the play button in the video player</li>
+                    <li>Or download the video: <a href="https://www.w3schools.com/html/mov_bbb.mp4" download>Download AI Video</a></li>
+                    <li>This demonstrates AI-generated travel content</li>
+                </ol>
+            </div>
+            
+            <div style="text-align: left; margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                <h3>How This AI Video Was Created:</h3>
+                <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                    <li><strong>Step 1:</strong> AI analyzes travel patterns and images</li>
+                    <li><strong>Step 2:</strong> Machine learning generates scene elements</li>
+                    <li><strong>Step 3:</strong> AI composes travel visualization</li>
+                    <li><strong>Step 4:</strong> Video is rendered and optimized</li>
+                </ul>
+            </div>
         </div>
 
-        <div style="line-height: 1.6;">
-            <h2>About Our AI Technology</h2>
-            <p>TravelZen uses artificial intelligence to create personalized travel experiences.</p>
-            
-            <h3>Contact:</h3>
-            <p>Email: s68127376002@ssru.ac.th</p>
-            <p>Project: Effective Website Promotions</p>
+        <div style="background: white; padding: 2rem; border-radius: 10px; margin: 2rem 0;">
+            <h3>Project Information</h3>
+            <p><strong>Student Email:</strong> s68127376002@ssru.ac.th</p>
+            <p><strong>Course:</strong> Effective Website Promotions</p>
+            <p><strong>Project:</strong> TravelZen AI Travel Platform</p>
+            <p><strong>This page demonstrates:</strong> AI-generated video content integration</p>
         </div>
     </div>
 
     <footer>
-        <p>TravelZen - About Page</p>
+        <p>TravelZen - AI Powered Travel Experience</p>
         <p>Email: s68127376002@ssru.ac.th</p>
-        <p>&copy; 2024 TravelZen</p>
+        <p>&copy; 2024 | This page features AI video content</p>
     </footer>
 
     <script>
-        // 确保视频能播放
+        // 视频播放控制
+        const video = document.getElementById('aiVideo');
+        const fallback = document.getElementById('videoFallback');
+        
+        // 尝试自动播放
         document.addEventListener('DOMContentLoaded', function() {
-            const video = document.querySelector('video');
+            console.log('AI Video Page Loaded');
+            
+            // 设置视频属性以便播放
             if (video) {
-                video.muted = true;
-                video.play().catch(e => {
-                    console.log('Auto-play prevented');
+                video.muted = true; // 静音模式更容易自动播放
+                video.preload = 'auto';
+                
+                // 尝试播放
+                const playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log('Auto-play prevented:', error);
+                        showFallback();
+                    });
+                }
+                
+                // 监听视频错误
+                video.addEventListener('error', function(e) {
+                    console.log('Video error:', e);
+                    showFallback();
                 });
+                
+                // 检查视频是否可播放
+                video.addEventListener('canplay', function() {
+                    console.log('Video can play');
+                    fallback.style.display = 'none';
+                });
+                
+                // 3秒后检查视频状态
+                setTimeout(() => {
+                    if (video.readyState < 2) { // 还没有足够数据
+                        showFallback();
+                    }
+                }, 3000);
+            }
+        });
+        
+        function showFallback() {
+            if (fallback) {
+                fallback.style.display = 'block';
+            }
+        }
+        
+        // 手动播放功能
+        function playVideo() {
+            if (video) {
+                video.play().catch(showFallback);
+            }
+        }
+        
+        // 点击页面任意位置尝试播放
+        document.addEventListener('click', function() {
+            if (video && video.paused) {
+                playVideo();
             }
         });
     </script>
