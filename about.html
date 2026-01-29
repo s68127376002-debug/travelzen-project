@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelZen | About</title>
+    <title>TravelZen | AI Travel Experience</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #f5f5f5, #e8f4fc);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
         }
         .navbar { 
-            background: #2C5F2D; 
+            background: rgba(44, 95, 45, 0.95); 
             padding: 1rem; 
             display: flex; 
             justify-content: space-between; 
@@ -19,12 +21,16 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
         .logo { 
             color: white; 
-            font-size: 1.8rem; 
+            font-size: 2rem; 
             font-weight: bold; 
             text-decoration: none; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .logo span { color: #FFB347; }
         .nav-links a { 
@@ -33,49 +39,76 @@
             text-decoration: none;
             padding: 8px 15px;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            font-weight: 500;
         }
-        .nav-links a:hover { background: rgba(255,255,255,0.2); }
+        .nav-links a:hover { 
+            background: rgba(255, 179, 71, 0.2); 
+            transform: translateY(-2px);
+        }
         .nav-links a.active { 
             background: #FFB347;
             color: #2C5F2D;
             font-weight: bold;
-        }
-        .page-header { 
-            background: linear-gradient(135deg, #007BFF, #0056b3); 
-            color: white; 
-            text-align: center; 
-            padding: 5rem 1rem; 
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
         }
         .container { 
             max-width: 1200px; 
-            margin: 0 auto; 
-            padding: 2rem; 
-        }
-        .video-section {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
             margin: 2rem auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 900px;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: fadeIn 1s ease-out;
         }
-        .video-container {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .ai-video-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .section-title {
+            color: #2C5F2D;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #FFB347, #FF8C00);
+            border-radius: 2px;
+        }
+        .section-subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .ai-video-container {
             position: relative;
             width: 100%;
-            margin: 2rem 0;
+            max-width: 800px;
+            height: 400px;
+            margin: 0 auto;
             border-radius: 15px;
             overflow: hidden;
-            background: black;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #1a3a1f, #2C5F2D);
         }
-        video {
+        #aiCanvas {
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
         }
-        .ai-label {
+        .ai-badge {
             position: absolute;
             top: 20px;
             right: 20px;
@@ -90,59 +123,80 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         .video-controls {
-            background: white;
+            background: #f8f9fa;
             padding: 1.5rem;
             border-radius: 10px;
-            margin-top: 1rem;
-            text-align: center;
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
         .control-btn {
-            background: #2C5F2D;
+            background: linear-gradient(135deg, #2C5F2D, #1a3a1f);
             color: white;
             border: none;
-            padding: 10px 25px;
-            margin: 0 10px;
+            padding: 12px 30px;
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
-            transition: background 0.3s;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(44, 95, 45, 0.3);
         }
         .control-btn:hover {
-            background: #1e4020;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(44, 95, 45, 0.4);
+        }
+        .control-btn.stop {
+            background: linear-gradient(135deg, #dc3545, #c82333);
         }
         .ai-process {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            border-left: 5px solid #FFB347;
+        }
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .process-card {
+            background: white;
             padding: 2rem;
             border-radius: 10px;
-            margin: 2rem 0;
-            border-left: 5px solid #007BFF;
-        }
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        .step {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
             text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
-        .step-number {
-            background: #FFB347;
-            color: white;
-            width: 40px;
-            height: 40px;
+        .process-card:hover {
+            transform: translateY(-10px);
+        }
+        .process-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #2C5F2D, #1a3a1f);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.8rem;
         }
         footer { 
             background: #1a1a1a; 
@@ -151,105 +205,90 @@
             padding: 3rem 1rem; 
             margin-top: 4rem;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.2rem;
         }
-        .fade-in {
-            animation: fadeIn 1s ease-out;
+        .ai-generated-text {
+            background: #e8f4fc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid #007BFF;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="logo">Travel<span>Zen</span></a>
+        <a href="index.html" class="logo">
+            <span style="color: #FFB347;">✈️</span>Travel<span>Zen</span>
+        </a>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="destinations.html">Destinations</a>
             <a href="blog.html">Blog</a>
-            <a href="about.html" class="active">About</a>
+            <a href="about.html" class="active">About AI</a>
         </div>
     </nav>
 
-    <header class="page-header">
-        <h1 style="font-size: 3rem; margin-bottom: 1rem;">AI Travel Revolution</h1>
-        <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">Experience the future of travel with AI-generated content and smart recommendations</p>
-    </header>
-
     <div class="container">
-        <div class="video-section fade-in">
-            <h2 style="text-align: center; color: #2C5F2D; margin-bottom: 1rem;">
-                AI-Generated Travel Experience
-            </h2>
-            <p style="text-align: center; color: #666; margin-bottom: 2rem;">
-                Watch as artificial intelligence creates a personalized travel visualization
-            </p>
+        <div class="ai-video-section">
+            <h1 class="section-title">AI Generated Travel Visualization</h1>
+            <p class="section-subtitle">This content is 100% generated by artificial intelligence in real-time</p>
             
-            <div class="video-container">
-                <div class="ai-label">
-                    <span>🤖</span> AI GENERATED
+            <div class="ai-video-container">
+                <div class="ai-badge">
+                    <span>🤖</span> LIVE AI GENERATION
                 </div>
-                
-                <!-- 使用base64编码的占位视频 -->
-                <video id="aiVideo" controls poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjQ1MCIgdmlld0JveD0iMCAwIDgwMCA0NTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDUwIiBmaWxsPSIjMWEzYTFmIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0Ij5BSSBHZW5lcmF0ZWQgVHJhdmVsIFZpZGVvPC90ZXh0Pgo8L3N2Zz4K">
-                    <!-- 多个视频源以确保播放 -->
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-tropical-beach-4470-large.mp4" type="video/mp4">
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-waves-crashing-on-the-beach-5016-large.mp4" type="video/mp4">
-                    <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=2e4c0d3632a6b2a8d1d25a1a8ab8cfd4c92f8744&profile_id=164" type="video/mp4">
-                    <!-- 如果以上都失败，显示备用信息 -->
-                    <track kind="captions" />
-                    Your browser doesn't support HTML5 video. 
-                    <a href="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-tropical-beach-4470-large.mp4">Download the video</a> instead.
-                </video>
+                <div class="loading" id="loadingText">Initializing AI Video Generation...</div>
+                <canvas id="aiCanvas"></canvas>
             </div>
             
             <div class="video-controls">
-                <button class="control-btn" onclick="playVideo()">▶ Play AI Video</button>
-                <button class="control-btn" onclick="pauseVideo()">⏸ Pause</button>
-                <button class="control-btn" onclick="muteVideo()">🔇 Mute</button>
+                <button class="control-btn" onclick="startAIVideo()">
+                    <span>▶</span> Start AI Generation
+                </button>
+                <button class="control-btn stop" onclick="stopAIVideo()">
+                    <span>⏹</span> Stop Generation
+                </button>
+                <button class="control-btn" onclick="changeAIScene()">
+                    <span>🔄</span> Change Scene
+                </button>
+                <button class="control-btn" onclick="toggleAIMode()">
+                    <span>🌙</span> Toggle Day/Night
+                </button>
+            </div>
+        </div>
+
+        <div class="ai-process">
+            <h2 style="color: #2C5F2D; margin-bottom: 1rem;">How This AI Video Works</h2>
+            <p style="color: #666; margin-bottom: 2rem;">
+                This is not a pre-recorded video. It's generated in real-time by JavaScript AI algorithms simulating travel experiences.
+            </p>
+            
+            <div class="ai-generated-text">
+                "The animation above is created dynamically using AI algorithms that simulate travel environments, 
+                weather patterns, and scenic views. No external videos or files are used - everything is generated 
+                mathematically by the AI system."
             </div>
             
-            <div class="ai-process fade-in">
-                <h3 style="color: #007BFF; margin-bottom: 1rem;">How This AI Video Was Created</h3>
-                <div class="process-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <h4>Data Collection</h4>
-                        <p>AI gathers travel images and data from thousands of sources</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <h4>Analysis</h4>
-                        <p>Machine learning algorithms analyze patterns and preferences</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <h4>Generation</h4>
-                        <p>AI creates new visual content based on the analysis</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">4</div>
-                        <h4>Optimization</h4>
-                        <p>Video is optimized for different devices and networks</p>
-                    </div>
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="process-icon">🧠</div>
+                    <h3>Neural Simulation</h3>
+                    <p>AI algorithms simulate travel environments using mathematical models</p>
                 </div>
-            </div>
-        </div>
-
-        <div class="ai-process fade-in">
-            <h2>Alternative Solution: If Video Still Doesn't Play</h2>
-            <p>If the AI video above is still not playing due to network restrictions, here's what you can do:</p>
-            <div style="background: #fff3cd; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; border-left: 4px solid #ffc107;">
-                <h4>🔄 Quick Fix:</h4>
-                <p>1. Download a short travel video (15-30 seconds) from a free stock site</p>
-                <p>2. Upload it to your GitHub repository in a folder named "videos"</p>
-                <p>3. Update the video source to: <code>src="videos/your-ai-video.mp4"</code></p>
-                <p>4. Commit and push the changes</p>
-            </div>
-        </div>
-
-        <div class="video-section fade-in">
-            <h2>About TravelZen AI</h2>
-            <p>TravelZen is revolutionizing travel planning through artificial intelligence. Our platform uses:</p>
-            <ul style="margin: 1rem 0 1rem 2rem; line-height: 2;">
-                <li><strong>Neural Networks</strong>
+                <div class="process-card">
+                    <div class="process-icon">🎨</div>
+                    <h3>Real-time Generation</h3>
+                    <p>Content is generated frame-by-frame in your browser</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-icon">🌍</div>
+                    <h3>Dynamic Scenes</h3>
+                    <p>Multiple travel scenes can be generated on demand</p>
